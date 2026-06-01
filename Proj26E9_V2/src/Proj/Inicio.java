@@ -19,7 +19,6 @@ public class Inicio {
 			System.out.println("* |  |    |  |  |  |           |   |           * Diogo Cardoso -> 54039     *");
 			System.out.println("* \\  \\____/  /  |  |           |   |           *******************************");
 			System.out.println("* \\________/   |__|           |___|                                         *");
-
 			System.out.println("*                                                                                    *");
 			System.out.println("**************************************************************************************");
 			System.out.println("*        1-Registar Utilizador/Register User                                         *");

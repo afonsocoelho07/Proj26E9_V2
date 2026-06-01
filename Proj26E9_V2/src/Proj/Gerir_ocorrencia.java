@@ -4,6 +4,23 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 
+
+
+
+
+
+
+
+
+
+//teste commit 
+
+
+
+
+
+
+
 public class Gerir_ocorrencia {
 	private ArrayList<Ocorrencia> lista_correncias;
 	private ArrayList<Utilizador> lista_utilizadores;
