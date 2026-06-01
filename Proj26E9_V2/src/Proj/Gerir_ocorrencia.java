@@ -92,7 +92,6 @@ public class Gerir_ocorrencia {
 	}
 	
 	/**
-	 * CORRIGIDO: recebe String (user) em vez de int
 	 * @param tipo String do tipo de utilizador
 	 * @return 1 se for Admin ou Equipa, senão 0
 	 */
@@ -116,7 +115,6 @@ public class Gerir_ocorrencia {
 	}
 
 	/**
-	 * ADICIONADO: converte numero do estado para String
 	 * @param estado 1=Em Processo, 2=Concluido
 	 * @return String do estado ou null se inválido
 	 */
@@ -202,7 +200,6 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
-	 * CORRIGIDO: adicionado System.out.println para realmente imprimir
 	 * lista de todas as ocorrencias
 	 */
 	public void lista_ocorrencia_admin() {
@@ -250,7 +247,6 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
-	 * CORRIGIDO: assinatura agora corresponde à chamada em Inicio.java (nome_login, user, titulo)
 	 * @param nome_login utilizador logado
 	 * @param user tipo do utilizador
 	 * @param titulo titulo da ocorrencia a ver
@@ -440,7 +436,6 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
-	 * ADICIONADO: versão com 1 argumento (chamada em Inicio.java)
 	 * @param titulo
 	 * @return 1 se encontrar, senão 0
 	 */
@@ -474,7 +469,6 @@ public class Gerir_ocorrencia {
 	}
 	
 	/**
-	 * CORRIGIDO: validação era ano>=1 && ano<=12 (errado), agora valida ano razoável
 	 * @param ano ex: 2024
 	 * filtrar ano
 	 */
