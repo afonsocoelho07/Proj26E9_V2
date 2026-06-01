@@ -1,3 +1,4 @@
+package Proj;
 import java.time.LocalDate;
 import java.util.ArrayList;
 public class Ocorrencia {
@@ -10,6 +11,7 @@ public class Ocorrencia {
 	private LocalDate data_final;
 	private String localizacao;
 	private int nivel_urgencia;
+	private String categoria;
 	
 	
 	/**
@@ -24,7 +26,7 @@ public class Ocorrencia {
 	 * contrutor ocorrencia
 	 */
 	public Ocorrencia(String nome_autor, String titulo, String descricao, String estado, LocalDate data_inicial,
-			LocalDate data_final, String localizacao, int nivel_urgencia) {
+			LocalDate data_final, String localizacao, int nivel_urgencia,String categoria) {
 		this.nome_autor = nome_autor;
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -33,6 +35,7 @@ public class Ocorrencia {
 		this.data_final = data_final;
 		this.localizacao = localizacao;
 		this.nivel_urgencia = nivel_urgencia;
+		this.categoria=categoria;
 	}
 	public String getNome_autor() {
 		return nome_autor;

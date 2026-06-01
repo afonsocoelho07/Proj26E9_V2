@@ -1,3 +1,4 @@
+package Proj;
 import java.util.ArrayList; 
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -34,14 +35,14 @@ public class Gerir_ocorrencia {
 	}
 	
 	/**
-	 * @param tipo
-	 * @return 1 se for valido o nome Admin/Equipa/Utilizador
+	 * @param tipo numero 1=Admin, 2=Equipa, 3=Utilizador
+	 * @return String com o tipo ou null
 	 */
-	public int existe_tipo_utilizador(String tipo) {
-		if(tipo.equals("Admin")||tipo.equals("Equipa")||tipo.equals("Utilizador")) {
-			return 1;
-		}
-		return 0;
+	public String existe_tipo_utilizador(int tipo) {
+		if(tipo == 1) return "Admin";
+		if(tipo == 2) return "Equipa";
+		if(tipo == 3) return "Utilizador";
+		return null;
 	}
 	
 	/**
@@ -91,8 +92,9 @@ public class Gerir_ocorrencia {
 	}
 	
 	/**
-	 * @param tipo
-	 * @return 1 se encontrar se não 0 ->se for Admin ou Equipa
+	 * CORRIGIDO: recebe String (user) em vez de int
+	 * @param tipo String do tipo de utilizador
+	 * @return 1 se for Admin ou Equipa, senão 0
 	 */
 	public int ver_utilizador(String tipo) {
 			if(tipo.equals("Admin")||tipo.equals("Equipa")) {
@@ -111,6 +113,17 @@ public class Gerir_ocorrencia {
 			return 1;
 		}
 		return 0;
+	}
+
+	/**
+	 * ADICIONADO: converte numero do estado para String
+	 * @param estado 1=Em Processo, 2=Concluido
+	 * @return String do estado ou null se inválido
+	 */
+	public String transformar_estado(int estado) {
+		if(estado == 1) return "Em Processo";
+		if(estado == 2) return "Concluido";
+		return null;
 	}
 	
 	/**
@@ -189,11 +202,12 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
+	 * CORRIGIDO: adicionado System.out.println para realmente imprimir
 	 * lista de todas as ocorrencias
 	 */
 	public void lista_ocorrencia_admin() {
 		for(Ocorrencia o:lista_correncias) {
-			o.toString();
+			System.out.println(o.toString());
 		}
 	}
 	
@@ -205,7 +219,7 @@ public class Gerir_ocorrencia {
 		for(Utilizador u:lista_utilizadores) {
 				for(Ocorrencia o:lista_correncias) {
 					if(o.getNome_autor().equals(nome_login)) {
-						o.toString();
+						System.out.println(o.toString());
 				}
 			}
 			
@@ -236,17 +250,20 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
-	 * @param tipo_utilizador
-	 * @param titulo
-	 * ver detalhes ocorrencia 
+	 * CORRIGIDO: assinatura agora corresponde à chamada em Inicio.java (nome_login, user, titulo)
+	 * @param nome_login utilizador logado
+	 * @param user tipo do utilizador
+	 * @param titulo titulo da ocorrencia a ver
 	 */
-	public void lista_ver_detalhes(String tipo_utilizador, String titulo) {
+	public void lista_ver_detalhes(String nome_login, String user, String titulo) {
 		for(Utilizador u:lista_utilizadores) {
 			for(Ocorrencia o:lista_correncias) {
-				if(u.getTipo_utilizador().equals("Utilizador")) {
-					o.detalhes();
-				}else {
-					o.detalhes();
+				if(o.getTitulo().equals(titulo)) {
+					if(u.getTipo_utilizador().equals("Utilizador")) {
+						o.detalhes();
+					}else {
+						o.detalhes();
+					}
 				}
 			}
 			
@@ -309,6 +326,15 @@ public class Gerir_ocorrencia {
 	 */
 	public void registar_categoria(Categoria c) {
 	    lista_categoria.add(c);
+	}
+	
+	/**
+	 * lista categorias
+	 */
+	public void lista_categorias() {
+		for(Categoria c:lista_categoria) {
+			System.out.println(c.getNome());
+		}
 	}
 	
 	/**
@@ -414,9 +440,9 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
+	 * ADICIONADO: versão com 1 argumento (chamada em Inicio.java)
 	 * @param titulo
-	 * @return
-	 * existe titulo
+	 * @return 1 se encontrar, senão 0
 	 */
 	public int existe_titulo(String titulo) {
 		for(Ocorrencia o:lista_correncias) {
@@ -424,7 +450,6 @@ public class Gerir_ocorrencia {
 				return 1;
 			}
 		}
-		
 		return 0;
 	}
 	
@@ -449,11 +474,12 @@ public class Gerir_ocorrencia {
 	}
 	
 	/**
-	 * @param ano
+	 * CORRIGIDO: validação era ano>=1 && ano<=12 (errado), agora valida ano razoável
+	 * @param ano ex: 2024
 	 * filtrar ano
 	 */
 	public void filtrar_ano(int ano) {
-		if(ano>=1 && ano<=12) {	
+		if(ano>=2000 && ano<=2100) {	
 			for(Ocorrencia o:lista_correncias) {
 				if(o.getData_inicial().getYear()==ano) {
 					System.out.println(o.toString());

@@ -1,3 +1,4 @@
+package Proj;
 import java.util.ArrayList;
 public class Categoria {
 	private ArrayList<Ocorrencia> ocorrencias;

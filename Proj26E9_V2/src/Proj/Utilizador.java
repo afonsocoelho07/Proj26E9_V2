@@ -1,4 +1,4 @@
-
+package Proj;
 public class Utilizador {
 	private String nome;
 	private String tipo_utilizador;
