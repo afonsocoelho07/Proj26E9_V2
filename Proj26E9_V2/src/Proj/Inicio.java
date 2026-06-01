@@ -9,9 +9,6 @@ public class Inicio {
 		Scanner ler = new Scanner(System.in);
 		int escolha_menu_1;
 
-		//teste commit 
-		
-		
 		do {
 			System.out.println("**************************************************************************************");
 			System.out.println("* __      __    ________    _________         * Grupo 9 -> PL1             *");
