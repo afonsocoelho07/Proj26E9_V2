@@ -1,0 +1,471 @@
+import java.util.ArrayList; 
+import java.util.Scanner;
+import java.time.LocalDate;
+
+
+public class Gerir_ocorrencia {
+	private ArrayList<Ocorrencia> lista_correncias;
+	private ArrayList<Utilizador> lista_utilizadores;
+	private ArrayList<Categoria> lista_categoria;
+	
+	/**
+	 * Construtor do gerir ocorrencia
+	 */
+	public Gerir_ocorrencia( ) {
+		this.lista_correncias = new ArrayList<Ocorrencia>();
+		this.lista_utilizadores = new ArrayList<Utilizador>();
+		this.lista_categoria = new ArrayList<Categoria>();
+	}
+	
+	/**
+	 * @param nome
+	 * @return 1 se encontrar se não 0
+	 */
+	public int existe_nome(String nome) {
+		
+		for(Utilizador u:lista_utilizadores) {
+			if(u.getNome().equals(nome)) {
+				return 1;
+	
+			}
+			
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param tipo
+	 * @return 1 se for valido o nome Admin/Equipa/Utilizador
+	 */
+	public int existe_tipo_utilizador(String tipo) {
+		if(tipo.equals("Admin")||tipo.equals("Equipa")||tipo.equals("Utilizador")) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param uti
+	 * Adiciona/cria utilizador á lista
+	 */
+	public void registar_utilizador(Utilizador uti) {
+		lista_utilizadores.add(uti);
+	}
+	
+	/**
+	 * @param cat
+	 * @return 1 se encontrar se não 0 ->procura categoria 
+	 */
+	public int existe_categoria(String cat) {
+		for(Categoria u:lista_categoria) {
+			if(u.getNome().equals(cat)) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param o
+	 * adiciona/cria ocorrencia
+	 */
+	public void registar_ocorrencia(Ocorrencia o) {
+		lista_correncias.add(o);
+	}
+	
+	/**
+	 * @param titulo
+	 * @return 1 se encontrar se não 0 ->procura titulo
+	 */
+	public int existe_ocorrencias(String titulo) {
+		for(Utilizador u:lista_utilizadores) {
+			for (Ocorrencia o:lista_correncias) {
+				if(o.getTitulo().equals(titulo)) {
+					return 1;
+				}
+			}
+		}
+		return 0;
+		
+		
+	}
+	
+	/**
+	 * @param tipo
+	 * @return 1 se encontrar se não 0 ->se for Admin ou Equipa
+	 */
+	public int ver_utilizador(String tipo) {
+			if(tipo.equals("Admin")||tipo.equals("Equipa")) {
+				return 1;
+			}
+			return 0;
+		
+	}
+	
+	/**
+	 * @param estado
+	 * @return 1 se encontrar se não 0->se alterar o estado para Em Processo ou Concluido
+	 */
+	public int existe_estado(String estado) {
+		if(estado.equals("Em Processo")||estado.equals("Concluido")) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param titulo_novo
+	 * @param nome_utilizador
+	 * @param titulo_original
+	 * edita titulo
+	 */
+	public void editar_titulo_ocorrencia(String titulo_novo,String nome_utilizador,String titulo_original) {
+		for(Utilizador u:lista_utilizadores) {
+		for(Ocorrencia o:lista_correncias) {
+				if(u.getNome().equals(nome_utilizador)) {
+					if(o.getTitulo().equals(titulo_original)) {
+						o.setTitulo(titulo_novo);
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @param descricao
+	 * @param nome_utilizador
+	 * @param titulo_original
+	 * edita descricao
+	 */
+	public void editar_descricao_ocorrencia(String descricao,String nome_utilizador,String titulo_original) {
+		for(Utilizador u:lista_utilizadores) {
+		for(Ocorrencia o:lista_correncias) {
+				if(u.getNome().equals(nome_utilizador)) {
+					if(o.getTitulo().equals(titulo_original)) {
+						o.setDescricao(descricao);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * @param localizacao
+	 * @param nome_utilizador
+	 * @param titulo_original
+	 * edita localizacao
+	 */
+	public void editar_localizacao_ocorrencia(String localizacao,String nome_utilizador,String titulo_original) {
+		for(Utilizador u:lista_utilizadores) {
+		for(Ocorrencia o:lista_correncias) {
+				if(u.getNome().equals(nome_utilizador)) {
+					if(o.getTitulo().equals(titulo_original)) {
+						o.setLocalizacao(localizacao);
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @param nivel
+	 * @param nome_utilizador
+	 * @param titulo_original
+	 * edita nivel
+	 */
+	public void editar_nivel_ocorrencia(int nivel,String nome_utilizador,String titulo_original) {
+		for(Utilizador u:lista_utilizadores) {
+		for(Ocorrencia o:lista_correncias) {
+				if(u.getNome().equals(nome_utilizador)) {
+					if(o.getTitulo().equals(titulo_original)) {
+						o.setNivel_urgencia(nivel);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * lista de todas as ocorrencias
+	 */
+	public void lista_ocorrencia_admin() {
+		for(Ocorrencia o:lista_correncias) {
+			o.toString();
+		}
+	}
+	
+	/**
+	 * @param nome_login
+	 * lista das ocorrencias criadas pelo utilizador
+	 */
+	public void lista_ocorrencia_utilizador(String nome_login) {
+		for(Utilizador u:lista_utilizadores) {
+				for(Ocorrencia o:lista_correncias) {
+					if(o.getNome_autor().equals(nome_login)) {
+						o.toString();
+				}
+			}
+			
+			}
+	}
+	
+	
+	/**
+	 * @param titulo
+	 * @param nome
+	 * @return
+	 * verifica se existe o titulo da ocorrencia num utilizador
+	 */
+	public int existe_titulo(String titulo,String nome) {
+		
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getNome_autor().equals(nome)) {
+				if(o.getTitulo().equals(titulo)) {
+					return 1;
+				}
+			}
+		}
+			
+		
+		return 0;
+	}
+	
+	
+	
+	/**
+	 * @param tipo_utilizador
+	 * @param titulo
+	 * ver detalhes ocorrencia 
+	 */
+	public void lista_ver_detalhes(String tipo_utilizador, String titulo) {
+		for(Utilizador u:lista_utilizadores) {
+			for(Ocorrencia o:lista_correncias) {
+				if(u.getTipo_utilizador().equals("Utilizador")) {
+					o.detalhes();
+				}else {
+					o.detalhes();
+				}
+			}
+			
+		}
+	}
+	
+	
+	/**
+	 * @param nome_utilizador
+	 * @param titulo
+	 * @return
+	 * exiete titulo no utilizador 
+	 */
+	public int existe_titulo_utilizador(String nome_utilizador,String titulo) {
+	
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getNome_autor().equals(nome_utilizador)) {
+				if(o.getTitulo().equals(titulo)) {
+					return 1;
+				}
+			}
+		}
+		return 0;
+		
+	}
+	
+	/**
+	 * @param titulo
+	 * @param estado
+	 * alterar estado
+	 */
+	public void alterar_estado(String titulo,String estado) {
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getTitulo().equals(titulo)) {
+				o.setEstado(estado);
+			}
+		}
+	}
+	
+	
+	/**
+	 * @param titulo
+	 * @param estado
+	 * @param data
+	 * quando da como concluida muda a data final
+	 */
+	public void alterar_estado_data(String titulo,String estado,LocalDate data) {
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getTitulo().equals(titulo)) {
+				o.setEstado(estado);
+				o.setData_final(data);
+			}
+		}
+	}
+	
+	
+	/**
+	 * @param categoria
+	 * adiciona categoria
+	 */
+	public void registar_categoria(Categoria c) {
+	    lista_categoria.add(c);
+	}
+	
+	/**
+	 * @param utilizador
+	 * @param titulo
+	 * pesquisar titulo
+	 */
+	public void pesquisar_titulo_uti(String utilizador,String titulo) {
+		int existe=0;
+		for(Utilizador u:lista_utilizadores) {
+			for(Ocorrencia o:lista_correncias) {
+				if(u.getNome().equals(utilizador)) {
+					if(o.getTitulo().equals(titulo)) {
+						o.toString();
+						existe=1;
+					}
+				}
+			}
+		}
+		if(existe==0) {
+			System.out.println("**************************************************************************************");
+			System.out.println("*                                                                                    *");
+        	System.out.println("*                  Não existe titulo / There is no title                             *");
+        	System.out.println("*                                                                                    *");
+        	System.out.println("**************************************************************************************");
+		
+		}
+	}
+	
+	
+	/**
+	 * @param titulo
+	 * pesquisar titulo equipa/admin 
+	 */
+	public void pesquisar_titulo(String titulo) {
+			int existe=0;
+			for(Ocorrencia o:lista_correncias) {
+					if(o.getTitulo().equals(titulo)) {
+						o.toString();
+						existe=1;
+					}
+				
+			}
+			if(existe==0) {
+				System.out.println("**************************************************************************************");
+				System.out.println("*                                                                                    *");
+	        	System.out.println("*                  Não existe titulo / There is no title                             *");
+	        	System.out.println("*                                                                                    *");
+	        	System.out.println("**************************************************************************************");
+			
+			}
+		
+	}
+	
+	/**
+	 * @param utilizador
+	 * @param categoria
+	 * pesquisar catgoria utilizador 
+	 */
+	public void pesquisar_categoria_uti(String utilizador,String categoria) {
+		int existe=0;
+		for(Utilizador u:lista_utilizadores) {
+			for(Ocorrencia o:lista_correncias) {
+				if(u.getNome().equals(utilizador)) {
+					if(o.getTitulo().equals(categoria)) {
+						o.toString();
+						existe=1;
+					}
+				}
+			}
+		}
+		if(existe==0) {
+			System.out.println("**************************************************************************************");
+			System.out.println("*                                                                                    *");
+        	System.out.println("*            Não existe categoria / There is no category                             *");
+        	System.out.println("*                                                                                    *");
+        	System.out.println("**************************************************************************************");
+		
+		}
+	}
+	
+	/**
+	 * @param categoria
+	 * pesquisar categoria
+	 */
+	public void pesquisar_categoria(String categoria) {
+		int existe =0;
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getTitulo().equals(categoria)) {
+				o.toString();
+				existe=1;
+			}
+		}
+		if(existe==0) {
+			System.out.println("**************************************************************************************");
+			System.out.println("*                                                                                    *");
+        	System.out.println("*            Não existe categoria / There is no category                             *");
+        	System.out.println("*                                                                                    *");
+        	System.out.println("**************************************************************************************");
+		
+		}
+	}
+	
+	
+	/**
+	 * @param titulo
+	 * @return
+	 * existe titulo
+	 */
+	public int existe_titulo(String titulo) {
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getTitulo().equals(titulo)) {
+				return 1;
+			}
+		}
+		
+		return 0;
+	}
+	
+	/**
+	 * @param mes
+	 * filtrar mes
+	 */
+	public void filtrar_mes(int mes) {
+		if(mes>=1 && mes<=12) {	
+			for(Ocorrencia o:lista_correncias) {
+				if(o.getData_inicial().getMonthValue()==mes) {
+					System.out.println(o.toString());
+				}
+			}
+		}else {
+			System.out.println("**************************************************************************************");
+			System.out.println("*                                                                                    *");
+        	System.out.println("*                                Mes iválido / Invalid month                         *");
+        	System.out.println("*                                                                                    *");
+        	System.out.println("**************************************************************************************");
+		}
+	}
+	
+	/**
+	 * @param ano
+	 * filtrar ano
+	 */
+	public void filtrar_ano(int ano) {
+		if(ano>=1 && ano<=12) {	
+			for(Ocorrencia o:lista_correncias) {
+				if(o.getData_inicial().getYear()==ano) {
+					System.out.println(o.toString());
+				}
+			}
+		}else {
+			System.out.println("**************************************************************************************");
+			System.out.println("*                                                                                    *");
+        	System.out.println("*                                Ano iválido / Invalid year                          *");
+        	System.out.println("*                                                                                    *");
+        	System.out.println("**************************************************************************************");
+		}
+	}
+	
+}
