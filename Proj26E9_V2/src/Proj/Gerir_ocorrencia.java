@@ -498,7 +498,7 @@ public class Gerir_ocorrencia {
 	            return 1; // eliminado com sucesso
 	        }
 	    }
-	    return 0; // não encontrou
+	    return 0; // não encontrou nada
 	}
 	
 }
