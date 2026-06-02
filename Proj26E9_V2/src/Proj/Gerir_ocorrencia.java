@@ -468,4 +468,20 @@ public class Gerir_ocorrencia {
 		}
 	}
 	
+	/**
+	 * @param nome_utilizador
+	 * @param titulo
+	 * elimina ocorrencia do utilizador
+	 */
+	public int eliminar_ocorrencia(String nome_utilizador, String titulo) {
+	    for (int i = 0; i < lista_correncias.size(); i++) {
+	        Ocorrencia o = lista_correncias.get(i);
+	        if (o.getNome_autor().equals(nome_utilizador) && o.getTitulo().equals(titulo)) {
+	            lista_correncias.remove(i);
+	            return 1; // eliminado com sucesso
+	        }
+	    }
+	    return 0; // não encontrou
+	}
+	
 }

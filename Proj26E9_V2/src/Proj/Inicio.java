@@ -49,7 +49,7 @@ public class Inicio {
 					int tipo_registar = ler.nextInt();
 					System.out.println("* *");
 
-					if (metedos.existe_tipo_utilizador(tipo_registar) != 0) {
+					if (metedos.existe_tipo_utilizador(tipo_registar) != null) {
 						Utilizador uti = new Utilizador(nome_registar, metedos.existe_tipo_utilizador(tipo_registar));
 						metedos.registar_utilizador(uti);
 						System.out.println("**************************************************************************************");
@@ -105,6 +105,9 @@ public class Inicio {
 							if (user.equals("Equipa") || user.equals("Admin")) {
 								System.out.println("* 6-Criar Categoria/Create Category                                           *");
 								System.out.println("* 7-Filtrar mes/ano /Filter by month/year                                     *");
+							}
+							if (user.equals("Utilizador")) {
+								System.out.println("* 9-Eliminar Ocorrencia/Delete Occurrence                                     *");
 							}
 							System.out.println("* 8-Logout                                                                    *");
 							System.out.println("**************************************************************************************");
@@ -375,8 +378,8 @@ public class Inicio {
 								}
 								break;
 
-							//filtrar
-							case 7: 
+							// filtrar
+							case 7:
 								System.out.println("* *");
 								System.out.println("* 1-Filtrar por mes / Filter by month                                         *");
 								System.out.println("* *");
@@ -388,13 +391,13 @@ public class Inicio {
 								int opcao_filtrar = ler.nextInt();
 								System.out.println("* *");
 								System.out.println("**************************************************************************************");
-								
-								if(opcao_filtrar==1) {
+
+								if (opcao_filtrar == 1) {
 									System.out.println("* *");
 									System.out.print("* Mes/Month: ");
 									int mes_filtrar = ler.nextInt();
 									metedos.filtrar_mes(mes_filtrar);
-								} else if(opcao_filtrar == 2) { // <- Corrigido aqui
+								} else if (opcao_filtrar == 2) {
 									System.out.println("* *");
 									System.out.print("* Ano/Year: ");
 									int ano_filtrar = ler.nextInt();
@@ -404,13 +407,44 @@ public class Inicio {
 									System.out.println("* Opcao Invalido/Invalid Opcion                           *");
 									System.out.println("* *");
 								}
-								break; // <- Adicionado break em falta para o case 7
-								
+								break;
+
 							// logout
 							case 8:
 								System.out.println("* *");
 								System.out.println("* Logout efectuado com sucesso!                             *");
 								System.out.println("* *");
+								break;
+
+							// eliminar ocorrencia
+							case 9:
+								if (user.equals("Utilizador")) {
+									System.out.println("* *");
+									System.out.print("* Título da Ocorrencia a eliminar/Title of Occurrence to delete: ");
+									String titulo_eliminar = ler.nextLine();
+
+									if (metedos.existe_titulo_utilizador(nome_login, titulo_eliminar) == 1) {
+										if (metedos.eliminar_ocorrencia(nome_login, titulo_eliminar) == 1) {
+											System.out.println("**************************************************************************************");
+											System.out.println("* *");
+											System.out.println("* Ocorrencia eliminada com sucesso/Occurrence deleted successfully          *");
+											System.out.println("* *");
+											System.out.println("**************************************************************************************");
+										}
+									} else {
+										System.out.println("**************************************************************************************");
+										System.out.println("* *");
+										System.out.println("* Título inválido ou sem permissão/Invalid title or no permission            *");
+										System.out.println("* *");
+										System.out.println("**************************************************************************************");
+									}
+								} else {
+									System.out.println("**************************************************************************************");
+									System.out.println("* *");
+									System.out.println("* Tipo Utilizador Invalido/Invalid User Type                          *");
+									System.out.println("* *");
+									System.out.println("**************************************************************************************");
+								}
 								break;
 
 							default:
@@ -422,7 +456,7 @@ public class Inicio {
 								break;
 							}
 
-						} while (escolha_menu_2 != 8); // <- Alterado para 8 para permitir logout
+						} while (escolha_menu_2 != 8);
 
 					} else {
 						System.out.println("* *");
@@ -451,8 +485,7 @@ public class Inicio {
 		System.out.println("* A sair/Leaving                                     *");
 		System.out.println("* *");
 		System.out.println("*************************************************************************************");
-		
-		ler.close(); // fechar o Scanner
+
+		ler.close();
 	}
 }
-
