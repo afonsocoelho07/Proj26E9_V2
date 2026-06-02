@@ -425,6 +425,6 @@ public class Inicio {
 		System.out.println("*                                 A sair/Leaving                                     *");
 		System.out.println("*                                                                                    *");
 		System.out.println("**************************************************************************************");
-		ler.close(); // fechar o Scanner
+		ler.close(); // fechar scanner
 	}
 }
