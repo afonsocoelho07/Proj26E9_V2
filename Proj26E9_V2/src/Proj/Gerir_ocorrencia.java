@@ -1,26 +1,7 @@
 package Proj;
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
-
-
-
-
-
-
-
-
-
-
-
-//teste commit 
-
-
-
-
-
-
-
 public class Gerir_ocorrencia {
 	private ArrayList<Ocorrencia> lista_correncias;
 	private ArrayList<Utilizador> lista_utilizadores;
@@ -72,7 +53,7 @@ public class Gerir_ocorrencia {
 	
 	/**
 	 * @param cat
-	 * @return 1 se encontrar se não 0 ->procura categoria 
+	 * @return 1 se encontrar se não 0 ->procura categoria
 	 */
 	public int existe_categoria(String cat) {
 		for(Categoria u:lista_categoria) {
@@ -130,7 +111,6 @@ public class Gerir_ocorrencia {
 		}
 		return 0;
 	}
-
 	/**
 	 * @param estado 1=Em Processo, 2=Concluido
 	 * @return String do estado ou null se inválido
@@ -288,7 +268,7 @@ public class Gerir_ocorrencia {
 	 * @param nome_utilizador
 	 * @param titulo
 	 * @return
-	 * exiete titulo no utilizador 
+	 * exiete titulo no utilizador
 	 */
 	public int existe_titulo_utilizador(String nome_utilizador,String titulo) {
 	
@@ -370,9 +350,9 @@ public class Gerir_ocorrencia {
 		if(existe==0) {
 			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-        	System.out.println("*                  Não existe titulo / There is no title                             *");
-        	System.out.println("*                                                                                    *");
-        	System.out.println("**************************************************************************************");
+       	System.out.println("*                  Não existe titulo / There is no title                             *");
+       	System.out.println("*                                                                                    *");
+       	System.out.println("**************************************************************************************");
 		
 		}
 	}
@@ -380,7 +360,7 @@ public class Gerir_ocorrencia {
 	
 	/**
 	 * @param titulo
-	 * pesquisar titulo equipa/admin 
+	 * pesquisar titulo equipa/admin
 	 */
 	public void pesquisar_titulo(String titulo) {
 			int existe=0;
@@ -405,7 +385,7 @@ public class Gerir_ocorrencia {
 	/**
 	 * @param utilizador
 	 * @param categoria
-	 * pesquisar catgoria utilizador 
+	 * pesquisar catgoria utilizador
 	 */
 	public void pesquisar_categoria_uti(String utilizador,String categoria) {
 		int existe=0;
@@ -422,9 +402,9 @@ public class Gerir_ocorrencia {
 		if(existe==0) {
 			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-        	System.out.println("*            Não existe categoria / There is no category                             *");
-        	System.out.println("*                                                                                    *");
-        	System.out.println("**************************************************************************************");
+       	System.out.println("*            Não existe categoria / There is no category                             *");
+       	System.out.println("*                                                                                    *");
+       	System.out.println("**************************************************************************************");
 		
 		}
 	}
@@ -444,9 +424,9 @@ public class Gerir_ocorrencia {
 		if(existe==0) {
 			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-        	System.out.println("*            Não existe categoria / There is no category                             *");
-        	System.out.println("*                                                                                    *");
-        	System.out.println("**************************************************************************************");
+       	System.out.println("*            Não existe categoria / There is no category                             *");
+       	System.out.println("*                                                                                    *");
+       	System.out.println("**************************************************************************************");
 		
 		}
 	}
@@ -479,14 +459,14 @@ public class Gerir_ocorrencia {
 		}else {
 			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-        	System.out.println("*                                Mes iválido / Invalid month                         *");
-        	System.out.println("*                                                                                    *");
-        	System.out.println("**************************************************************************************");
+       	System.out.println("*                                Mes iválido / Invalid month                         *");
+       	System.out.println("*                                                                                    *");
+       	System.out.println("**************************************************************************************");
 		}
 	}
 	
 	/**
-	 * @param ano ex: 2024
+	 * @param ano
 	 * filtrar ano
 	 */
 	public void filtrar_ano(int ano) {
@@ -499,10 +479,11 @@ public class Gerir_ocorrencia {
 		}else {
 			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-        	System.out.println("*                                Ano iválido / Invalid year                          *");
-        	System.out.println("*                                                                                    *");
-        	System.out.println("**************************************************************************************");
+       	System.out.println("*                                Ano iválido / Invalid year                          *");
+       	System.out.println("*                                                                                    *");
+       	System.out.println("**************************************************************************************");
 		}
 	}
 	
 }
+
