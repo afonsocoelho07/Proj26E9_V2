@@ -71,10 +71,13 @@ public class Inicio {
 					System.out.println("*                                                                                    *");
 					System.out.print("* Tipo Utilizador/User type  (1-Admin/2-Equipa/3-Utilizador) : ");
 					int tipo_login = ler.nextInt();
-					System.out.println("* *");
+					System.out.println("*                                                                                    *");
 					ler.nextLine();
 					String user = metedos.existe_tipo_utilizador(tipo_login);
 					if (user != null) {
+						
+						
+						
 						int escolha_menu_2;
 						// Segundo menu
 						do {
@@ -89,8 +92,74 @@ public class Inicio {
 							System.out.println("*           \\________/   |__|           |___|                                        *");
 							System.out.println("*                                                                                    *");
 							System.out.println("**************************************************************************************");
+							
+							String nome_equipa_entrar;
+							String nome_categoria_entrar;
+							
+							if (user.equals("Equipa")) {
+								System.out.println("*                                                                                    *");
+								System.out.println("*        1-Entrar numa equipa/Join a team                                            *");
+								System.out.println("*        2-Registar-me numa equipa/ Register me for a team                           *");
+								System.out.println("*                                                                                    *");
+								
+								int opcao_equipa=ler.nextInt();
+								if(opcao_equipa==1) {
+									System.out.print("* Categoria da equipa/Team category: ");
+									nome_categoria_entrar=ler.nextLine();
+									
+									if(metedos.existe_categoria(nome_categoria_entrar)==1) {
+									
+										System.out.print("* Nome da equipa/Team name: ");
+										nome_equipa_entrar=ler.nextLine();
+										
+										if(metedos.existe_equipa(nome_categoria_entrar, nome_equipa_entrar)==1) {
+											
+											
+											System.out.println("*                                                                                    *");
+											System.out.println("*            Entrou na equipa "+ nome_equipa_entrar+"                                *");
+											System.out.println("*                                                                                    *");
+										
+										}else {
+											System.out.println("*                                                                                    *");
+											System.out.println("*                             Invalido/Invalid                                       *");
+											System.out.println("*                                                                                    *");
+											break;
+										}
+										
+									}
+									
+									
+								}else if(opcao_equipa==2) {
+									System.out.print("* Categoria da equipa/Team category: ");
+									String nome_categoria_registar=ler.nextLine();
+									
+									if(metedos.existe_categoria(nome_categoria_registar)==1) {
+										
+										System.out.print("* Nome da equipa/Team name: ");
+										String nome_equipa_registar=ler.nextLine();
+										
+										
+										
+										
+										
+										
+									}else {
+									System.out.println("*                                                                                    *");
+									System.out.println("*                             Invalido/Invalid                                       *");
+									System.out.println("*                                                                                    *");
+									}
+									
+									
+								}else {
+									System.out.println("*                                                                                    *");
+									System.out.println("*                             Invalido/Invalid                                       *");
+									System.out.println("*                                                                                    *");
+									break;
+								}
+							}
+							
+							
 							if (user.equals("Utilizador")) {
-
 								System.out.println("*        1-Criar Ocorrencia/Create Incident                                          *");
 							}
 
@@ -99,13 +168,13 @@ public class Inicio {
 							System.out.println("*        3-Lista Ocorrencias/List of Occurrences                                     *");
 							System.out.println("*        4-Editar Ocorrencia/Edit Occurrence                                         *");
 							System.out.println("*        5-Lista Categorias/List categories                                          *");
-							if (user.equals("Equipa") || user.equals("Admin")) {
+							if(user.equals("Admin")) {
+								System.out.println("*        6-Criar Categoria/Create Category                                           *");
+							}else if (user.equals("Equipa") || user.equals("Admin")) {
 		
 								System.out.println("*        7-Filtrar mes/ano /Filter by month/year                                     *");
 							}else if(user.equals("Equipa")){
-								System.out.println("*        x-Filtrar mes/ano /Filter by month/year                                     *");
-							}else if(user.equals("Admin")) {
-								System.out.println("*        6-Criar Categoria/Create Category                                           *");
+								System.out.println("*        8                                     *");
 							}
 							System.out.println("*        8-Logout                                                                    *");
 							System.out.println("**************************************************************************************");

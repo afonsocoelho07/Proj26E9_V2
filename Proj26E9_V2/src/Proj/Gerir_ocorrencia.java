@@ -8,6 +8,7 @@ public class Gerir_ocorrencia {
 	private ArrayList<Categoria> lista_categoria;
 	private ArrayList<Equipa> lista_equipas;
 	
+	
 	/**
 	 * Construtor do gerir ocorrencia
 	 */
@@ -481,9 +482,9 @@ public class Gerir_ocorrencia {
 		}else {
 			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-       	System.out.println("*                                Ano iválido / Invalid year                          *");
-       	System.out.println("*                                                                                    *");
-       	System.out.println("**************************************************************************************");
+	       	System.out.println("*                                Ano iválido / Invalid year                          *");
+	       	System.out.println("*                                                                                    *");
+	       	System.out.println("**************************************************************************************");
 		}
 	}
 	
@@ -497,20 +498,51 @@ public class Gerir_ocorrencia {
 	
 	
 	/**
-	 * @param nome
-	 * verifica se ja existe equipa
+	 * @param nome,  categoria
+	 * verifica se ja existe equipa com a mesma categoria e o mesmo nome 
 	 */
-	public int existe_equipa(String nome) {
-	    for (Equipa e : lista_equipas) {
-	        if (e.getNome().equals(nome)) {
-	            return 1;
-	        }
+	public int existe_equipa(String categoria,String nome) {
+	    for(Categoria c:lista_categoria) {
+	    	if(c.getNome().equals(categoria)){
+		    	for(Equipa e:lista_equipas) {
+		    		if(e.getNome().equals(nome)) {
+		    			return 1;
+		    		}
+		    	}
+	    	}	
 	    }
 	    return 0;
 	}
 	
 	
 
+	
+	/**
+	 * @param u
+	 * @param equipa
+	 * @return
+	 * adiciona membro a uma equipa 
+	 */
+	public int adicionarMembro(Utilizador u, Equipa equipa) {
+        for (Utilizador membro : lista_utilizadores) {
+            if (membro.getNome().equals(u.getNome())) {
+                for (Equipa equipaDaLista : lista_equipas) {
+                    if (equipaDaLista.getNome().equals(equipa.getNome()) && equipaDaLista.getCategoria().equals(equipa.getCategoria())) {
+                        
+                        if (equipaDaLista.getLotacao() > equipaDaLista.getLotacao_ocupada()) {
+                            equipaDaLista.adicionarMembro(u); 
+                            equipaDaLista.setLotacao_ocupada(equipaDaLista.getLotacao_ocupada() + 1);
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
+    }
 
-
+	
+	
 }
