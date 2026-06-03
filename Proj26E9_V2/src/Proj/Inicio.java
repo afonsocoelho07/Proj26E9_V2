@@ -93,8 +93,8 @@ public class Inicio {
 							System.out.println("*                                                                                    *");
 							System.out.println("**************************************************************************************");
 							
-							String nome_equipa_entrar;
-							String nome_categoria_entrar;
+							String nome_equipa_entrar=null;
+							String nome_categoria_entrar=null;
 							
 							if (user.equals("Equipa")) {
 								System.out.println("*                                                                                    *");
@@ -138,8 +138,30 @@ public class Inicio {
 										System.out.print("* Nome da equipa/Team name: ");
 										String nome_equipa_registar=ler.nextLine();
 										
+										String tipo_l;
+										if(tipo_login==1) {
+											tipo_l="Admin";
+										}else if(tipo_login==2) {
+											tipo_l="Equipa";
+										}else {
+											tipo_l="Utilizador";
+										}
 										
 										
+										Utilizador uti = new Utilizador(nome_login, tipo_l);
+										Equipa e=new Equipa(nome_equipa_entrar,nome_categoria_entrar,0,0);
+										
+										if(metedos.adicionarMembro(uti,e)==1) {
+											System.out.println("*                                                                                    *");
+											System.out.println("*                      Criado com sucesso/Successfully created                       *");
+											System.out.println("*                                                                                    *");
+											
+										}else {
+											System.out.println("*                                                                                    *");
+											System.out.println("*                       Não foi criado/It was not created                            *");
+											System.out.println("*                                                                                    *");
+											break;
+										}
 										
 										
 										
@@ -161,22 +183,43 @@ public class Inicio {
 							
 							if (user.equals("Utilizador")) {
 								System.out.println("*        1-Criar Ocorrencia/Create Incident                                          *");
+								
+								//2-denunciar equipa 
+								//3-denunciar trabalho 
+								
 							}
 
 							System.out.println("*                                                                                    *");
-							System.out.println("*        2-Ver detalhes/View Details                                                 *");
-							System.out.println("*        3-Lista Ocorrencias/List of Occurrences                                     *");
-							System.out.println("*        4-Editar Ocorrencia/Edit Occurrence                                         *");
-							System.out.println("*        5-Lista Categorias/List categories                                          *");
+							System.out.println("*        4-Ver detalhes/View Details                                                 *");
+							System.out.println("*        5-Lista Ocorrencias/List of Occurrences                                     *");
+							System.out.println("*        6-Editar Ocorrencia/Edit Occurrence                                         *");
+							System.out.println("*        7-Lista Categorias/List categories                                          *");
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							if(user.equals("Admin")) {
-								System.out.println("*        6-Criar Categoria/Create Category                                           *");
+								System.out.println("*        8-Criar Categoria/Create Category                                           *");
+								System.out.println("*        9-Criar Equipa/Create Team                                                  *");
 							}else if (user.equals("Equipa") || user.equals("Admin")) {
-		
-								System.out.println("*        7-Filtrar mes/ano /Filter by month/year                                     *");
-							}else if(user.equals("Equipa")){
-								System.out.println("*        8                                     *");
+								
+								System.out.println("*        10-Filtrar mes/ano /Filter by month/year                                *");
 							}
-							System.out.println("*        8-Logout                                                                    *");
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							System.out.println("*        11-Logout                                                                   *");
 							System.out.println("**************************************************************************************");
 							System.out.println("*                                                                                    *");
 							System.out.print("* Opcao/Option: ");
