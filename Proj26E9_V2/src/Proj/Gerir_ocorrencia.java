@@ -7,6 +7,7 @@ public class Gerir_ocorrencia {
 	private ArrayList<Utilizador> lista_utilizadores;
 	private ArrayList<Categoria> lista_categoria;
 	private ArrayList<Equipa> lista_equipas;
+	private ArrayList<Denuncia>denuncias;
 	
 	
 	/**
@@ -17,6 +18,7 @@ public class Gerir_ocorrencia {
 		this.lista_utilizadores = new ArrayList<Utilizador>();
 		this.lista_categoria = new ArrayList<Categoria>();
 		this.lista_equipas = new ArrayList<Equipa>();
+		this.denuncias= new ArrayList<Denuncia>();
 	}
 	
 	/**
@@ -542,7 +544,48 @@ public class Gerir_ocorrencia {
         }
         return 0;
     }
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void registar_denuncia(Denuncia d) {
+	    denuncias.add(d);
+	}
+	public void listar_denuncias() {
+	    for (Denuncia d : denuncias) {
+	        System.out.println(d.toString());
+	    }
+	}
+	public int total_denuncias_equipa() {
+		int total=0;
+		for(Denuncia d :denuncias) {
+			if(d.getTipo().equalsIgnoreCase("EQUIPA")) {
+				total++;
+			}
+		}
+		return total;
+	}
+	public int total_denuncias_ocorrencias() {
+		int total=0;
+		for(Denuncia d :denuncias) {
+			if(d.getTipo().equalsIgnoreCase("EQUIPA")) {
+				total++;
+			}
+		}
+		return total;
+	}
+	
 	
 	
 }
