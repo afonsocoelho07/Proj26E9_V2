@@ -7,7 +7,7 @@ public class Gerir_ocorrencia {
 	private ArrayList<Utilizador> lista_utilizadores;
 	private ArrayList<Categoria> lista_categoria;
 	private ArrayList<Equipa> lista_equipas;
-	
+	private ArrayList<Denuncia>denuncias;
 	
 	/**
 	 * Construtor do gerir ocorrencia
@@ -543,6 +543,223 @@ public class Gerir_ocorrencia {
         return 0;
     }
 
+	
+	/**
+	 * @param nome_utilizador
+	 * @param titulo
+	 * elimina ocorrencia do utilizador
+	 */
+	
+	public int eliminar_ocorrencia(String nome_utilizador, String titulo) {
+	    for (Ocorrencia o:lista_correncias) {
+	        if (o.getNome_autor().equals(nome_utilizador) && o.getTitulo().equals(titulo)) {
+	            lista_correncias.remove(o);
+	            return 1; 
+	        }
+	    }
+	    return 0; 
+	}
+	
+	
+	/**
+	 * @param nomeEquipa
+	 * @param categoria
+	 * @param porque
+	 * @return
+	 * eleminar equipa
+	 */
+	public int eliminar_equipa(String nomeEquipa, String categoria, String porque) {
+
+	    if (nomeEquipa.trim().isEmpty() || categoria.trim().isEmpty() || porque.trim().isEmpty()) {
+	        System.out.println("Todos os campos tem de ser preenchidos obrigatoriamente!");
+	        return 0;
+	    }
+
+	    if (this.existe_categoria(categoria) == 0) {
+	        System.out.println("A categoria '" + categoria + "' não existe.");
+	        return 0;
+	    }
+
+	    int equipaExiste = 0;
+	    for (Equipa e : lista_equipas) {
+	        if (e.getCategoria().equals(categoria)) {
+	            if (e.getNome().equals(nomeEquipa)) {
+	                equipaExiste = 1;
+	                break;
+	            }
+	        }
+	    }
+
+	    if (equipaExiste == 0) {
+	        System.out.println("A equipa '" + nomeEquipa + "' não existe.");
+	        return 0;
+	    }
+
+	    for (int i = 0; i < lista_equipas.size(); i++) {
+	        Equipa e = lista_equipas.get(i);
+	        if (e.getNome().equals(nomeEquipa)) {
+	            if (e.getCategoria().equals(categoria)) {
+	                lista_equipas.remove(i);
+	                return 1;
+	            }
+	        }
+	    }
+	    System.out.println("A equipa '" + nomeEquipa + "' não foi encontrada.");
+	    return 0;
+	}
+	
+	
+	/**
+	 * @param nomeEquipa
+	 * @param categoria
+	 * @param nomeMembro
+	 * @param porque
+	 * @return
+	 * elemina membro
+	 */
+	public int eliminar_membro_criterio(String nomeEquipa, String categoria, String nomeMembro, String porque) {
+
+	    if (nomeEquipa.trim().isEmpty() || categoria.trim().isEmpty() || 
+	        nomeMembro.trim().isEmpty() || porque.trim().isEmpty()) {
+	        System.out.println("Todos os campos tem de ser preenchidos obrigatoriamente!");
+	        return 0;
+	    }
+
+	    if (this.existe_categoria(categoria) == 0) {
+	        System.out.println("A categoria '" + categoria + "' não existe.");
+	        return 0; 
+	    }
+
+	    int equipaExiste = 0;
+	    for (Utilizador u : lista_utilizadores) {
+	        if (u.getTipo_utilizador().equals("Equipa")) {
+	            if (u.getNome().equals(nomeEquipa)) {
+	                equipaExiste = 1;
+	                break; 
+	            }
+	        }
+	    }
+
+	    if (equipaExiste == 0) {
+	        System.out.println("A equipa '" + nomeEquipa + "' não existe.");
+	        return 0;
+	    }
+	  
+	    for (int i = 0; i < lista_utilizadores.size(); i++) {
+	        Utilizador u = lista_utilizadores.get(i);
+	        
+	        if (u.getNome().equals(nomeMembro)) {
+	            if (u.getTipo_utilizador().equals("Utilizador")) {
+	                lista_utilizadores.remove(i);
+	                return 1; 
+	            }
+	        }
+	    }
+	    System.out.println("O membro '" + nomeMembro + "' não foi encontrado.");
+	    return 0;
+	}
+	
+	
+	/**
+	 * @param d
+	 * registar denuncia 
+	 */
+	public void registar_denuncia(Denuncia d) {
+	    denuncias.add(d);
+	}
+	
+	
+	/**
+	 * listar denuncia
+	 */
+	public void listar_denuncias() {
+	    for (Denuncia d : denuncias) {
+	        System.out.println(d.toString());
+	    }
+	}
+	
+	
+	/**
+	 * @return
+	 * total_denuncias
+	 */
+	public int total_denuncias_equipa() {
+		int total=0;
+		for(Denuncia d :denuncias) {
+			if(d.getTipo().equals("Equipa")) {
+				total++;
+			}
+		}
+		return total;
+	}
+	
+	
+	/**
+	 * @return
+	 * total de denuncias ocorrencia
+	 */
+	public int total_denuncias_ocorrencias() {
+		int total=0;
+		for(Denuncia d :denuncias) {
+			if(d.getTipo().equals("Equipa")) {
+				total++;
+			}
+		}
+		return total;
+	}
+	
+	/**
+	 * @param novaOcorrencia
+	 * atribui trabalho
+	 */
+	public void atribuir_trabalho(Ocorrencia novaOcorrencia) {
+	    Equipa equipaComMenosTrabalho = null;
+	    int menorNumeroDeTrabalhos = 999999;
+
+	    for (Equipa e : lista_equipas) {
+	        if (e.getCategoria().equals(novaOcorrencia.getCategoria() )  ) {
+	            int contagemTrabalhos = 0;
+	            for (Ocorrencia o : lista_correncias) {
+	                if (o.getNomeEquipaAtribuida().equals(e.getNome()) && !o.getEstado().equals("Concluido")) {
+	                    contagemTrabalhos++;
+	                }
+	            }
+	            if (contagemTrabalhos < menorNumeroDeTrabalhos) {
+	                menorNumeroDeTrabalhos = contagemTrabalhos;
+	                equipaComMenosTrabalho = e;
+	            }
+	        }
+	    }
+
+	    if (equipaComMenosTrabalho != null) {
+	        novaOcorrencia.setNomeEquipaAtribuida(equipaComMenosTrabalho.getNome());
+	        System.out.println("Trabalho atribuido a equipa: " + equipaComMenosTrabalho.getNome());
+	    } else {
+	        System.out.println("Nao ha nenhuma equipa desta categoria disponivel.");
+	    }
+	}
+
+	/**
+	 * @param nomeEquipa
+	 * liista ocorrencias equipa
+	 */
+	public void lista_ocorrencia_equipa(String nomeEquipa) {
+	    int encontrou = 0;
+	    for (Ocorrencia o : lista_correncias) {
+	        if (o.getNomeEquipaAtribuida().equals(nomeEquipa)) {
+	            System.out.println(o.toString());
+	            encontrou = 1;
+	        }
+	    }
+	    if (encontrou == 0) {
+	        System.out.println("A sua equipa nao tem trabalhos atribuidos de momento.");
+	    }
+	}
+	
+	
+	
+	
+	
 	
 	
 }

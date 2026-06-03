@@ -12,6 +12,23 @@ public class Ocorrencia {
 	private String localizacao;
 	private int nivel_urgencia;
 	private String categoria;
+	private String nomeEquipaAtribuida = "Nenhuma";
+
+	
+	
+	public String getNomeEquipaAtribuida() {
+	    return nomeEquipaAtribuida;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setNomeEquipaAtribuida(String nomeEquipaAtribuida) {
+	    this.nomeEquipaAtribuida = nomeEquipaAtribuida;
+	}
+	
+	
 	
 	
 	/**

@@ -183,43 +183,32 @@ public class Inicio {
 							
 							if (user.equals("Utilizador")) {
 								System.out.println("*        1-Criar Ocorrencia/Create Incident                                          *");
-								
-								//2-denunciar equipa 
-								//3-denunciar trabalho 
+								System.out.println("*        2-Eleminar Ocorrencia/Eliminate occurrence                                  *");
+								System.out.println("*        3-Denunciar equipa/Report team                                              *");
+								System.out.println("*        4-Denunciar trabalho/Report job                                             *");
 								
 							}
 
 							System.out.println("*                                                                                    *");
-							System.out.println("*        4-Ver detalhes/View Details                                                 *");
-							System.out.println("*        5-Lista Ocorrencias/List of Occurrences                                     *");
-							System.out.println("*        6-Editar Ocorrencia/Edit Occurrence                                         *");
-							System.out.println("*        7-Lista Categorias/List categories                                          *");
-							
-							
-							
-							
-							
-							
-							
+							System.out.println("*        5-Ver detalhes/View Details                                                 *");
+							System.out.println("*        6-Lista Ocorrencias/List of Occurrences                                     *");
+							System.out.println("*        7-Editar Ocorrencia/Edit Occurrence                                         *");
+							System.out.println("*        8-Lista Categorias/List categories                                          *");
 							
 							
 							if(user.equals("Admin")) {
-								System.out.println("*        8-Criar Categoria/Create Category                                           *");
-								System.out.println("*        9-Criar Equipa/Create Team                                                  *");
+								System.out.println("*        9-Criar Categoria/Create Category                                           *");
+								System.out.println("*        10-Criar Equipa/Create Team                                                 *");
+								System.out.println("*        11-Eleminar Membro/Delete Member                                            *");
+								System.out.println("*        12-Eleminar Equipa/Delete Team                                              *");
+								System.out.println("*        13-Denuncia/Report                                                          *");
+								
 							}else if (user.equals("Equipa") || user.equals("Admin")) {
 								
-								System.out.println("*        10-Filtrar mes/ano /Filter by month/year                                *");
+								System.out.println("*        14-Filtrar mes/ano /Filter by month/year                                *");
 							}
 							
-							
-							
-							
-							
-							
-							
-							
-							
-							System.out.println("*        11-Logout                                                                   *");
+							System.out.println("*        15-Logout                                                                   *");
 							System.out.println("**************************************************************************************");
 							System.out.println("*                                                                                    *");
 							System.out.print("* Opcao/Option: ");
@@ -251,6 +240,7 @@ public class Inicio {
 										ler.nextLine();
 										Ocorrencia oc = new Ocorrencia(nome_login, titulo_ocorrencia, descricao_ocorrencia, "Aberto", data_inicio, null, localizacao_ocorrencia, nivel_ocorrencia, categoria);
 										metedos.registar_ocorrencia(oc);
+										metedos.atribuir_trabalho(oc);
 										System.out.println("*                                                                                    *");
 										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
@@ -268,14 +258,42 @@ public class Inicio {
 									System.out.println("*                Tipo Utilizador Invalido/Invalid User Type                          *");
 									System.out.println("*                                                                                    *");
 								}
+								
 								break;
-							// ver detalhes
+							
+							//eleminar ocorrencia
 							case 2:
 								System.out.println("*                                                                                    *");
-								System.out.print("* Título Ocorrencia : ");
+								System.out.print("* Título Ocorrencia/Title Occurrence : ");
 								String titulo_ocorrencia = ler.nextLine();
-								if (metedos.existe_titulo(titulo_ocorrencia) == 1) {
-									metedos.lista_ver_detalhes(nome_login, user, titulo_ocorrencia);
+								if(metedos.eliminar_ocorrencia(nome_login, titulo_ocorrencia)==1) {
+									System.out.println("**************************************************************************************");
+									System.out.println("*                                                                                    *");
+									System.out.println("*                Eleminada com sucesso/Successfully eliminated                       *");
+									System.out.println("*                                                                                    *");
+								
+								}else {
+									System.out.println("**************************************************************************************");
+									System.out.println("*                                                                                    *");
+									System.out.println("*     Impossivel eleminar ocorrencia/It is impossible to eliminate the occurrence    *");
+									System.out.println("*                                                                                    *");
+								
+								}
+								
+								
+							//denunciar equipa
+							//case 3
+								
+							//denunciar trabalho
+							//case 4
+								
+							// ver detalhes
+							case 5:
+								System.out.println("*                                                                                    *");
+								System.out.print("* Título Ocorrencia : ");
+								String titulo_ocorrencia1 = ler.nextLine();
+								if (metedos.existe_titulo(titulo_ocorrencia1) == 1) {
+									metedos.lista_ver_detalhes(nome_login, user, titulo_ocorrencia1);
 								} else {
 									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
@@ -284,15 +302,19 @@ public class Inicio {
 								}
 								break;
 							// lista ocorrencias
-							case 3:
-								if (user.equals("Admin") || user.equals("Equipa")) {
-									metedos.lista_ocorrencia_admin();
+							case 6:
+								if (user.equals("Admin")) {
+								    metedos.lista_ocorrencia_admin();
+								} else if (user.equals("Equipa")) {
+								    metedos.lista_ocorrencia_equipa(nome_login);
 								} else {
-									metedos.lista_ocorrencia_utilizador(nome_login);
+								    metedos.lista_ocorrencia_utilizador(nome_login);
 								}
 								break;
+								
+								
 							// editar ocorrencia
-							case 4:
+							case 7:
 								System.out.println("**************************************************************************************");
 								System.out.println("*                                                                                    *");
 								System.out.println("*           Título Ocorrencia/Title Occurrence                                       *");
@@ -439,11 +461,11 @@ public class Inicio {
 								}
 								break;
 							// lista categorias
-							case 5:
+							case 8:
 								metedos.lista_categorias();
 								break;
 							// criar categoria
-							case 6:
+							case 9:
 								if (user.equals("Equipa") || user.equals("Admin")) {
 									System.out.println("*                                                                                    *");
 									System.out.print("* Nome da Categoria : ");
@@ -468,8 +490,109 @@ public class Inicio {
 									System.out.println("*                                                                                    *");
 								}
 								break;
+								
+							//criar equipa
+							case 10:
+								System.out.println("*                                                                                    *");
+								System.out.print("* Categoria da equipa/Team category: ");
+							    nome_categoria_entrar = ler.nextLine();
+
+							    if (metedos.existe_categoria(nome_categoria_entrar) == 1) {
+							    	System.out.println("*                                                                                    *");
+							        System.out.print("* Nome da equipa/Team name: ");
+							        nome_equipa_entrar = ler.nextLine();
+							        System.out.println("*                                                                                    *");
+							        System.out.print("* Lotacao/Capacity: ");
+							        int lotacao = ler.nextInt();
+							        ler.nextLine();
+
+							        Equipa e= new Equipa(nome_equipa_entrar, nome_categoria_entrar, lotacao,0);
+							        metedos.criar_equipa(e);
+
+							        System.out.println("*                                                                                    *");
+							        System.out.println("*                          Equipa adicionada com sucesso!                            *");
+							        System.out.println("*                                                                                    *");
+
+							    } else {
+
+							        System.out.println("*                                                                                    *");
+							        System.out.println("*                    Categoria nao existe / Category not found                      *");
+							        System.out.println("*                                                                                    *");
+
+							    }
+							    break;
+								
+							//eleminar Membro
+							case 11:
+								System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("*              Eliminar Membro de Equipa / Remove Team Member                        *");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Nome da Equipa / Team Name: ");
+							    String nomeEquipa_eliminar = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Categoria da Equipa / Team Category: ");
+							    String categoria_eliminar = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Nome do Membro / Member Name: ");
+							    String nomeMembro_eliminar = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Motivo / Reason: ");
+							    String porque_eliminar = ler.nextLine();
+
+							    int resultado = metedos.eliminar_membro_criterio( nomeEquipa_eliminar, categoria_eliminar, nomeMembro_eliminar, porque_eliminar);
+							    
+							       
+
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    if (resultado == 1) {
+							        System.out.println("*        Membro eliminado com sucesso / Member successfully removed                  *");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    }
+							    break;
+								
+							//eleminar equipa
+							case 12:
+								System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("*                  Eliminar Equipa / Remove Team                                     *");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Nome da Equipa / Team Name: ");
+							    String nomeEquipa_eliminar_eq = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Categoria da Equipa / Team Category: ");
+							    String categoria_eliminar_eq = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Motivo / Reason: ");
+							    String porque_eliminar_eq = ler.nextLine();
+
+							    int resultado_eq = metedos.eliminar_equipa(nomeEquipa_eliminar_eq, categoria_eliminar_eq, porque_eliminar_eq);
+							    
+							        
+
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    if (resultado_eq == 1) {
+							        System.out.println("*           Equipa eliminada com sucesso / Team successfully removed                  *"); 
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    }
+							    break;
+								
+							
+							//denuncia
+							case 13:
+								
+							    
+							    
 							//filtrar
-							case 7:
+							case 14:
 								System.out.println("*                                                                                    *");
 								System.out.println("*        1-Filtrar por mes / Filter by month                                         *");
 								System.out.println("*                                                                                    *");
@@ -502,7 +625,7 @@ public class Inicio {
 								break;
 								
 							// logout
-							case 8:
+							case 15:
 								System.out.println("*                                                                                    *");
 								System.out.println("*                          Logout efectuado com sucesso!                             *");
 								System.out.println("*                                                                                    *");
