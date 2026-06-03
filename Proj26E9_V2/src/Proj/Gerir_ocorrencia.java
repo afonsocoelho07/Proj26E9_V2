@@ -542,7 +542,123 @@ public class Gerir_ocorrencia {
         }
         return 0;
     }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
+	public int eliminar_membro_criterio(String nomeEquipa, String categoria, String nomeMembro, String porque) {
+
+	    if (nomeEquipa.trim().isEmpty() || categoria.trim().isEmpty() || 
+	        nomeMembro.trim().isEmpty() || porque.trim().isEmpty()) {
+	        System.out.println("Todos os campos tem de ser preenchidos obrigatoriamente!");
+	        return 0;
+	    }
+
+	    if (this.existe_categoria(categoria) == 0) {
+	        System.out.println("A categoria '" + categoria + "' não existe.");
+	        return 0; 
+	    }
+
+	    int equipaExiste = 0;
+	    for (Utilizador u : lista_utilizadores) {
+	        if (u.getTipo_utilizador().equals("Equipa")) {
+	            if (u.getNome().equals(nomeEquipa)) {
+	                equipaExiste = 1;
+	                break; 
+	            }
+	        }
+	    }
+
+	    if (equipaExiste == 0) {
+	        System.out.println("A equipa '" + nomeEquipa + "' não existe.");
+	        return 0;
+	    }
+	  
+	    for (int i = 0; i < lista_utilizadores.size(); i++) {
+	        Utilizador u = lista_utilizadores.get(i);
+	        
+	        if (u.getNome().equals(nomeMembro)) {
+	            if (u.getTipo_utilizador().equals("Utilizador")) {
+	                lista_utilizadores.remove(i);
+	                return 1; 
+	            }
+	        }
+	    }
+	    System.out.println("O membro '" + nomeMembro + "' não foi encontrado.");
+	    return 0;
+	}
 	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public int eliminar_equipa(String nomeEquipa, String categoria, String porque) {
+
+    if (nomeEquipa.trim().isEmpty() || categoria.trim().isEmpty() || porque.trim().isEmpty()) {
+        System.out.println("Todos os campos tem de ser preenchidos obrigatoriamente!");
+        return 0;
+    }
+
+    if (this.existe_categoria(categoria) == 0) {
+        System.out.println("A categoria '" + categoria + "' não existe.");
+        return 0;
+    }
+
+    int equipaExiste = 0;
+    for (Equipa e : lista_equipas) {
+        if (e.getCategoria().equals(categoria)) {
+            if (e.getNome().equals(nomeEquipa)) {
+                equipaExiste = 1;
+                break;
+            }
+        }
+    }
+
+    if (equipaExiste == 0) {
+        System.out.println("A equipa '" + nomeEquipa + "' não existe.");
+        return 0;
+    }
+
+    for (int i = 0; i < lista_equipas.size(); i++) {
+        Equipa e = lista_equipas.get(i);
+        if (e.getNome().equals(nomeEquipa)) {
+            if (e.getCategoria().equals(categoria)) {
+                lista_equipas.remove(i);
+                return 1;
+            }
+        }
+    }
+    System.out.println("A equipa '" + nomeEquipa + "' não foi encontrada.");
+    return 0;
 }
+}
+
+
+

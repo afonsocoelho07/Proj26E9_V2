@@ -170,13 +170,34 @@ public class Inicio {
 							System.out.println("*        5-Lista Categorias/List categories                                          *");
 							if(user.equals("Admin")) {
 								System.out.println("*        6-Criar Categoria/Create Category                                           *");
+								
+								
+								
+								
+								
+								
+								
+								
+								System.out.println("*        7-Eliminar membro/Delete member                                          *");
+								System.out.println("*        8-Eliminar membro/Delete member                                          *");
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 							}else if (user.equals("Equipa") || user.equals("Admin")) {
 		
-								System.out.println("*        7-Filtrar mes/ano /Filter by month/year                                     *");
+								System.out.println("*        9-Filtrar mes/ano /Filter by month/year                                     *");
 							}else if(user.equals("Equipa")){
 								System.out.println("*        8                                     *");
 							}
-							System.out.println("*        8-Logout                                                                    *");
+							System.out.println("*        10-Logout                                                                    *");
 							System.out.println("**************************************************************************************");
 							System.out.println("*                                                                                    *");
 							System.out.print("* Opcao/Option: ");
@@ -426,7 +447,7 @@ public class Inicio {
 								}
 								break;
 							//filtrar
-							case 7:
+							case 9:
 								System.out.println("*                                                                                    *");
 								System.out.println("*        1-Filtrar por mes / Filter by month                                         *");
 								System.out.println("*                                                                                    *");
@@ -458,8 +479,115 @@ public class Inicio {
 								}
 								break;
 								
-							// logout
+								
+								
+								
+								
+								
+								
+								
+					
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							
+								// eliminar membro
+							case 7:
+								System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("*              Eliminar Membro de Equipa / Remove Team Member                        *");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Nome da Equipa / Team Name: ");
+							    String nomeEquipa_eliminar = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Categoria da Equipa / Team Category: ");
+							    String categoria_eliminar = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Nome do Membro / Member Name: ");
+							    String nomeMembro_eliminar = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Motivo / Reason: ");
+							    String porque_eliminar = ler.nextLine();
+
+							    int resultado = metedos.eliminar_membro_criterio( nomeEquipa_eliminar, categoria_eliminar, nomeMembro_eliminar, porque_eliminar);
+							    
+							       
+
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    if (resultado == 1) {
+							        System.out.println("*        Membro eliminado com sucesso / Member successfully removed                  *");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    }
+							    break;
+								
+								
+								
+								
 							case 8:
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("*                  Eliminar Equipa / Remove Team                                     *");
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Nome da Equipa / Team Name: ");
+							    String nomeEquipa_eliminar_eq = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Categoria da Equipa / Team Category: ");
+							    String categoria_eliminar_eq = ler.nextLine();
+							    System.out.println("*                                                                                    *");
+							    System.out.print("* Motivo / Reason: ");
+							    String porque_eliminar_eq = ler.nextLine();
+
+							    int resultado_eq = metedos.eliminar_equipa(nomeEquipa_eliminar_eq, categoria_eliminar_eq, porque_eliminar_eq);
+							    
+							        
+
+							    System.out.println("**************************************************************************************");
+							    System.out.println("*                                                                                    *");
+							    if (resultado_eq == 1) {
+							        System.out.println("*           Equipa eliminada com sucesso / Team successfully removed                  *"); 
+							    System.out.println("*                                                                                    *");
+							    System.out.println("**************************************************************************************");
+							    }
+							    break;
+								
+								
+								
+								
+							
+							    
+							    
+							    
+							    
+							    
+							    
+							    
+							    
+							    
+							    
+							    
+								
+								
+								
+								
+								
+								
+							// logout
+							case 10:
 								System.out.println("*                                                                                    *");
 								System.out.println("*                          Logout efectuado com sucesso!                             *");
 								System.out.println("*                                                                                    *");
@@ -471,6 +599,10 @@ public class Inicio {
 								System.out.println("*                                                                                    *");
 								System.out.println("**************************************************************************************");
 								break;
+								
+
+	
+								
 							}
 						} while (escolha_menu_2 != 8);
 					} else {
