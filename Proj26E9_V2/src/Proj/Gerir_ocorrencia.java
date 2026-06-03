@@ -10,6 +10,7 @@ public class Gerir_ocorrencia {
 	/**
 	 * Construtor do gerir ocorrencia
 	 */
+	
 	public Gerir_ocorrencia( ) {
 		this.lista_correncias = new ArrayList<Ocorrencia>();
 		this.lista_utilizadores = new ArrayList<Utilizador>();
@@ -436,6 +437,7 @@ public class Gerir_ocorrencia {
 	 * @param titulo
 	 * @return 1 se encontrar, senão 0
 	 */
+	
 	public int existe_titulo(String titulo) {
 		for(Ocorrencia o:lista_correncias) {
 			if(o.getTitulo().equals(titulo)) {
@@ -469,6 +471,7 @@ public class Gerir_ocorrencia {
 	 * @param ano
 	 * filtrar ano
 	 */
+	
 	public void filtrar_ano(int ano) {
 		if(ano>=2000 && ano<=2100) {	
 			for(Ocorrencia o:lista_correncias) {
@@ -490,15 +493,14 @@ public class Gerir_ocorrencia {
 	 * @param titulo
 	 * elimina ocorrencia do utilizador
 	 */
+	
 	public int eliminar_ocorrencia(String nome_utilizador, String titulo) {
-	    for (int i = 0; i < lista_correncias.size(); i++) {
-	        Ocorrencia o = lista_correncias.get(i);
+	    for (Ocorrencia o:lista_correncias) {
 	        if (o.getNome_autor().equals(nome_utilizador) && o.getTitulo().equals(titulo)) {
-	            lista_correncias.remove(i);
+	            lista_correncias.remove(o);
 	            return 1; // eliminado com sucesso
 	        }
 	    }
 	    return 0; // não encontrou nada
 	}
-	
 }
