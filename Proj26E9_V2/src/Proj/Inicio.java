@@ -464,6 +464,35 @@ public class Inicio {
 								System.out.println("*                          Logout efectuado com sucesso!                             *");
 								System.out.println("*                                                                                    *");
 								break;
+							case 9:
+								System.out.print("* Categoria da equipa/Team category: ");
+							    nome_categoria_entrar = ler.nextLine();
+
+							    if (metedos.existe_categoria(nome_categoria_entrar) == 1) {
+
+							        System.out.print("* Nome da equipa/Team name: ");
+							        nome_equipa_entrar = ler.nextLine();
+
+							        System.out.print("* Lotacao/Capacity: ");
+							        int lotacao = ler.nextInt();
+							        ler.nextLine();
+
+							        Equipa e= new Equipa(nome_equipa_entrar, nome_categoria_entrar, lotacao,0);
+							        metedos.criar_equipa(e);
+
+							        System.out.println("*                                                                                    *");
+							        System.out.println("*                          Equipa adicionada com sucesso!                            *");
+							        System.out.println("*                                                                                    *");
+
+							    } else {
+
+							        System.out.println("*                                                                                    *");
+							        System.out.println("*                    Categoria nao existe / Category not found                      *");
+							        System.out.println("*                                                                                    *");
+
+							    }
+							    break;
+								
 							default:
 								System.out.println("**************************************************************************************");
 								System.out.println("*                                                                                    *");
