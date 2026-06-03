@@ -6,6 +6,7 @@ public class Gerir_ocorrencia {
 	private ArrayList<Ocorrencia> lista_correncias;
 	private ArrayList<Utilizador> lista_utilizadores;
 	private ArrayList<Categoria> lista_categoria;
+	private ArrayList<Equipa> lista_equipas;
 	
 	/**
 	 * Construtor do gerir ocorrencia
@@ -14,6 +15,7 @@ public class Gerir_ocorrencia {
 		this.lista_correncias = new ArrayList<Ocorrencia>();
 		this.lista_utilizadores = new ArrayList<Utilizador>();
 		this.lista_categoria = new ArrayList<Categoria>();
+		this.lista_equipas = new ArrayList<Equipa>();
 	}
 	
 	/**
@@ -485,4 +487,30 @@ public class Gerir_ocorrencia {
 		}
 	}
 	
+	/**
+	 * @param nome
+	 * criar equipa
+	 */
+	public void criar_equipa(Equipa criar) {
+	    lista_equipas.add(criar);
+	}
+	
+	
+	/**
+	 * @param nome
+	 * verifica se ja existe equipa
+	 */
+	public int existe_equipa(String nome) {
+	    for (Equipa e : lista_equipas) {
+	        if (e.getNome().equals(nome)) {
+	            return 1;
+	        }
+	    }
+	    return 0;
+	}
+	
+	
+
+
+
 }

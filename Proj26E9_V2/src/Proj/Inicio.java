@@ -100,10 +100,12 @@ public class Inicio {
 							System.out.println("*        4-Editar Ocorrencia/Edit Occurrence                                         *");
 							System.out.println("*        5-Lista Categorias/List categories                                          *");
 							if (user.equals("Equipa") || user.equals("Admin")) {
-
-								System.out.println("*                                                                                    *");
-								System.out.println("*        6-Criar Categoria/Create Category                                           *");
+		
 								System.out.println("*        7-Filtrar mes/ano /Filter by month/year                                     *");
+							}else if(user.equals("Equipa")){
+								System.out.println("*        x-Filtrar mes/ano /Filter by month/year                                     *");
+							}else if(user.equals("Admin")) {
+								System.out.println("*        6-Criar Categoria/Create Category                                           *");
 							}
 							System.out.println("*        8-Logout                                                                    *");
 							System.out.println("**************************************************************************************");
