@@ -129,13 +129,456 @@ public class Inicio {
 										String descricao_ocorrencia = ler.nextLine();
 										LocalDate data_inicio = LocalDate.now();
 										System.out.println("*                                                                                    *");
-										System.out.print("* Localização Ocorrencia/Occurrence Location : ");
-										String localizacao_ocorrencia = ler.nextLine();
-										System.out.println("*                                                                                    *");
+									
+									
+										
+										
+										
+									
+										
+										
+										//LOCAIS
+										
+										System.out.println("* Escolher Edificio/Choose Building : ");
+										System.out.println("* Principal-1 Parque de Estacionamento-2 Sao tome-3 Espelho D'agua-4 Jardim-5 ");
+										Localizacao c;
+										int escolher_Edificio = ler.nextInt();
+
+										
+										/// 1-EDIFICIO
+										
+										System.out.println("* *********************************************** *");										
+										if (escolher_Edificio == 1) {
+
+										    System.out.print("Escolher o piso (1 a 6): ");
+										    int escolher_Piso = ler.nextInt();
+										    String edificio = "Principal";
+										    
+										    
+										    switch (escolher_Piso) {
+
+										        case 1: // Piso 1
+
+										            System.out.print("Escolher Salas 1 / Outros 2: ");
+										            int escolher_tipo = ler.nextInt();
+
+										            if (escolher_tipo == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+										               
+
+										                metedos.verificarSala(escolher_Piso, escolher_sala);
+										                c = new Localizacao(edificio,escolher_Piso, "Sala ", escolher_sala) ;
+
+										            } else if (escolher_tipo == 2) {
+
+										                System.out.print("Biblioteca-1, Magna-2, Secretaria-3, WC-4, Corredor-5: ");
+										                int escolher_outros = ler.nextInt();
+
+										                String Localfinal = "";
+
+										                if (escolher_outros == 1) {
+										                    Localfinal = "Biblioteca";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 2) {
+										                    Localfinal = "Magna";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 3) {
+										                    Localfinal = "Secretaria";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 4) {
+										                    Localfinal = "WC";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 5) {
+										                    Localfinal = "Corredor";   
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+
+										                
+										            }
+
+										            break;
+
+										        case 2:
+										            System.out.println("Piso 2 selecionado");
+										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										            int escolher_tipo2 = ler.nextInt();
+
+										            if (escolher_tipo2 == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+
+										                metedos.verificarSala(escolher_Piso, escolher_sala);
+										                c = new Localizacao(edificio,escolher_Piso, "Sala ", escolher_sala) ;
+
+										            } else if (escolher_tipo2 == 2) {
+
+										                System.out.print("WC-1, Bar-2, Sala de Convivio-3, Gabinete De ingresso-4, Corredor-5 : ");
+										                int escolher_outros = ler.nextInt();
+
+										                String Localfinal = "";
+
+										                if (escolher_outros == 1) {
+										                    Localfinal = "WC";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 2) {
+										                    Localfinal = "Bar";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 3) {
+										                    Localfinal = "Convivio";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 4) {
+										                    Localfinal = "Gabinete De ingresso";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 5) {
+										                    Localfinal = "Corredor";    
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+
+										                
+										            }
+										            
+										           
+										            
+										            break;
+
+										        case 3:
+										            System.out.println("Piso 3 selecionado");
+										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										            int escolher_tipo3 = ler.nextInt();
+
+										            if (escolher_tipo3 == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+
+										                metedos.verificarSala(escolher_Piso, escolher_sala);
+										                c = new Localizacao(edificio,escolher_Piso, "Sala ", escolher_sala) ;
+
+										            } else if (escolher_tipo3 == 2) {
+
+										                System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										                int escolher_outros = ler.nextInt();
+
+										                String Localfinal = "";
+
+										                if (escolher_outros == 1) {
+										                    Localfinal = "WC";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 2) {
+										                    Localfinal = "Corredor";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else if (escolher_outros == 3) {
+										                    Localfinal = "Mesas de Convívio";
+										                    c = new Localizacao(edificio,escolher_Piso,Localfinal, 0) ;
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+
+										                
+										            }
+										            
+										            
+										            break;
+
+										        case 4:
+										            System.out.println("Piso 4 selecionado");
+										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										            int escolher_tipo4 = ler.nextInt();
+
+										            if (escolher_tipo4 == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+
+										                metedos.verificarSala(escolher_Piso, escolher_sala);
+
+										            } else if (escolher_tipo4 == 2) {
+
+										            	System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										                int escolher_outros = ler.nextInt();
+
+										                String Localfinal = "";
+
+										                if (escolher_outros == 1) {
+										                    Localfinal = "WC";
+										                } else if (escolher_outros == 2) {
+										                    Localfinal = "Corredor";
+										                } else if (escolher_outros == 3) {
+										                    Localfinal = "Mesas de Convívio";
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+
+										                
+										            }
+										            
+										            
+										            break;
+
+										        case 5:
+										            System.out.println("Piso 5 selecionado");
+										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										            int escolher_tipo5 = ler.nextInt();
+
+										            if (escolher_tipo5 == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+
+										                metedos.verificarSala(escolher_Piso, escolher_sala);
+
+										            } else if (escolher_tipo5 == 2) {
+
+										            	System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										                int escolher_outros = ler.nextInt();
+
+										                String Localfinal = "";
+
+										                if (escolher_outros == 1) {
+										                    Localfinal = "WC";
+										                } else if (escolher_outros == 2) {
+										                    Localfinal = "Corredor";
+										                } else if (escolher_outros == 3) {
+										                    Localfinal = "Mesas de Convívio";
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+
+										                
+										            }
+										            
+										            break;
+
+										        case 6:
+										            System.out.println("Piso 6 selecionado");
+										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										            int escolher_tipo6 = ler.nextInt();
+
+										            if (escolher_tipo6 == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+
+										                metedos.verificarSala(escolher_Piso, escolher_sala);
+
+										            } else if (escolher_tipo6 == 2) {
+
+										            	System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										                int escolher_outros = ler.nextInt();
+
+										                String Localfinal = "";
+
+										                if (escolher_outros == 1) {
+										                    Localfinal = "WC";
+										                } else if (escolher_outros == 2) {
+										                    Localfinal = "Corredor";
+										                } else if (escolher_outros == 3) {
+										                    Localfinal = "Mesas de Convívio";
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+
+										                
+										            }
+										            
+										            break;
+
+										        default:
+										            System.out.println("Piso inválido");
+										    }
+
+										/// 2- EDIFICIO
+										
+										} else if (escolher_Edificio == 2) {
+											
+
+										    System.out.print("Escolher o piso (1 a 3): ");
+										    int escolher_Piso_Estacionamento = ler.nextInt();
+										    String edificio = "Parque de Estacionamento";
+										    
+										    String LocalFinal = "Estacionamento"; 
+
+										    switch (escolher_Piso_Estacionamento) {
+										        case 1:
+										            System.out.println("Piso 1 selecionado ");
+										            c = new Localizacao(edificio, escolher_Piso_Estacionamento, LocalFinal, 0);										            
+										            break;
+
+										        case 2:
+										            System.out.println("Piso 2 selecionado ");
+										            c = new Localizacao(edificio, escolher_Piso_Estacionamento, LocalFinal, 0);
+										            break;
+
+										        case 3:
+										            System.out.println("Piso 3 selecionado ");
+										            c = new Localizacao(edificio, escolher_Piso_Estacionamento, LocalFinal, 0);
+										            break;
+
+										        default:
+										            System.out.println("Piso inválido!");
+										            break;
+										    }
+										
+										    /// 3- EDIFICIO
+										
+										} else if (escolher_Edificio == 3) {
+
+										    System.out.print("Escolher o piso (1 a 2): ");
+										    int escolher_Piso_SaoTome = ler.nextInt();
+										    String edificio = "São Tomé";
+
+										    switch (escolher_Piso_SaoTome) {
+
+										        case 1: // Piso 1
+
+										            System.out.println("Piso 1 selecionado");
+										            System.out.println("Cantina-1 Sala de Convivio-2 Wc-3 Corredor-4");
+
+										            int escolher_outros = ler.nextInt();
+										            String Localfinal = "";
+
+										            if (escolher_outros == 1) {
+										                Localfinal = "Cantina";
+										                c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal, 0);
+
+										            } else if (escolher_outros == 2) {
+										                Localfinal = "Sala de Convivio";
+										                c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal, 0);
+
+										            } else if (escolher_outros == 3) {
+										                Localfinal = "WC";
+										                c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal, 0);
+
+										            } else if (escolher_outros == 4) {
+										                Localfinal = "Corredor";
+										                c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal, 0);
+
+										            } else {
+										                System.out.println("Opção inválida");
+										            }
+
+										            break;
+
+										        case 2:
+///coriigir este
+										            System.out.println("Piso 2 selecionado");
+										            System.out.println("Escolher Salas 1 / Outros 2: ");
+
+										            int escolher_tipo2 = ler.nextInt();
+
+										            if (escolher_tipo2 == 1) {
+
+										                System.out.print("Escolher Sala: ");
+										                int escolher_sala = ler.nextInt();
+
+										                metedos.verificarSalaSaoTome(escolher_sala);
+
+										                c = new Localizacao(edificio, escolher_Piso_SaoTome, "Sala", escolher_sala);
+
+										            } else if (escolher_tipo2 == 2) {
+
+										                System.out.print("WC-1, Corredor-2: ");
+										                int escolher_outros2 = ler.nextInt();
+
+										                String Localfinal2 = "";
+
+										                if (escolher_outros2 == 1) {
+										                    Localfinal2 = "WC";
+										                    c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal2, 0);
+
+										                } else if (escolher_outros2 == 2) {
+										                    Localfinal2 = "Corredor";
+										                    c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal2, 0);
+
+										                } else {
+										                    System.out.println("Opção inválida");
+										                }
+										            }
+										            else {
+										                  System.out.println("Opção inválida"); // ALTERADO: adicionado tratamento para escolher_tipo2 inválido
+										             }
+
+										            break;
+										    }
+
+										/// EDIFICIO 4	
+										    
+										} else if (escolher_Edificio == 4) {
+
+										    System.out.println("Espelho D'agua selecionado");
+
+										    String edificio = "Espelho D'agua";
+										    String Localfinal = "Espelho D'agua";
+
+										    c = new Localizacao(edificio, 0, Localfinal, 0);
+										
+										
+										/// EDIFICIO 5
+										
+										} else if (escolher_Edificio == 5) {
+
+										    System.out.println("Jardim selecionado");
+
+										    System.out.print("Escolher zona (1 a 3): ");
+										    int escolher_Zona_Jardim = ler.nextInt();
+										    String edificio = "Jardim";
+
+										    switch (escolher_Zona_Jardim) {
+
+										        case 1:
+										            System.out.println("Zona relvado selecionada");
+										            c = new Localizacao(edificio, escolher_Zona_Jardim, "Relvado", 0);
+
+										            break;
+
+										        case 2:
+										            System.out.println("Zona bancos selecionada");
+										            c = new Localizacao(edificio, escolher_Zona_Jardim, "Bancos", 0);
+
+										            break;
+
+										        case 3:
+										            System.out.println("Zona entrada selecionada");
+										            c = new Localizacao(edificio, escolher_Zona_Jardim, "Entrada", 0);
+
+										            break;
+
+										        default:
+										            System.out.println("Opção inválida");
+										            break;
+										    }
+										} else {
+
+										    System.out.println("Edifício inválido");
+										}
+										
+										
+											
+										
+									
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
 										System.out.print("* Nivel Urgencia/Level of Urgency ((Menor/Less)1-5(Maior/Bigger)) : ");
 										int nivel_ocorrencia = ler.nextInt();
 										ler.nextLine();
-										Ocorrencia oc = new Ocorrencia(nome_login, titulo_ocorrencia, descricao_ocorrencia, "Aberto", data_inicio, null, localizacao_ocorrencia, nivel_ocorrencia, categoria);
+										Ocorrencia oc = new Ocorrencia(nome_login, titulo_ocorrencia, descricao_ocorrencia, "Aberto", data_inicio, null, c , nivel_ocorrencia, categoria);
 										metedos.registar_ocorrencia(oc);
 										System.out.println("*                                                                                    *");
 										System.out.println("**************************************************************************************");

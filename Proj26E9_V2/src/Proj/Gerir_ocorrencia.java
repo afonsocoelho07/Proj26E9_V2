@@ -6,6 +6,7 @@ public class Gerir_ocorrencia {
 	private ArrayList<Ocorrencia> lista_correncias;
 	private ArrayList<Utilizador> lista_utilizadores;
 	private ArrayList<Categoria> lista_categoria;
+	private ArrayList<Localizacao> lista_localizacoes;
 	
 	/**
 	 * Construtor do gerir ocorrencia
@@ -14,6 +15,10 @@ public class Gerir_ocorrencia {
 		this.lista_correncias = new ArrayList<Ocorrencia>();
 		this.lista_utilizadores = new ArrayList<Utilizador>();
 		this.lista_categoria = new ArrayList<Categoria>();
+	    this.lista_localizacoes = new ArrayList<Localizacao>();
+	    
+
+
 	}
 	
 	/**
@@ -49,6 +54,7 @@ public class Gerir_ocorrencia {
 	 */
 	public void registar_utilizador(Utilizador uti) {
 		lista_utilizadores.add(uti);
+		
 	}
 	
 	/**
@@ -70,6 +76,8 @@ public class Gerir_ocorrencia {
 	 */
 	public void registar_ocorrencia(Ocorrencia o) {
 		lista_correncias.add(o);
+		
+		
 	}
 	
 	/**
@@ -165,17 +173,7 @@ public class Gerir_ocorrencia {
 	 * @param titulo_original
 	 * edita localizacao
 	 */
-	public void editar_localizacao_ocorrencia(String localizacao,String nome_utilizador,String titulo_original) {
-		for(Utilizador u:lista_utilizadores) {
-		for(Ocorrencia o:lista_correncias) {
-				if(u.getNome().equals(nome_utilizador)) {
-					if(o.getTitulo().equals(titulo_original)) {
-						o.setLocalizacao(localizacao);
-					}
-				}
-			}
-		}
-	}
+
 	
 	/**
 	 * @param nivel
@@ -484,5 +482,66 @@ public class Gerir_ocorrencia {
        	System.out.println("**************************************************************************************");
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	/// teste da mudanca localizacao
+	/// 
+
+
+	/// verifica sala para os edificios menos o sao tome
+	
+	public  void verificarSala(int piso, int sala) {
+
+	    int min = piso * 100;
+	    int max = min + 21;
+
+	    if (piso >= 1 && piso <= 6 && sala >= min && sala <= max) {
+	        System.out.println("Sala válida no piso " + piso);
+	    } else {
+	        System.out.println("Sala inválida");
+	    }
+	}
+	
+	public void registar_Loc(Localizacao l) {
+		lista_localizacoes.add(l);
+	}
+	
+	
+	/// verifica sala para sao tome
+	
+	public void verificarSalaSaoTome(int sala) {
+
+	    if (sala >= 700 && sala <= 721) {
+	        System.out.println("Sala válida no São Tomé");
+	    } else {
+	        System.out.println("Sala inválida no São Tomé");
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 	
 }

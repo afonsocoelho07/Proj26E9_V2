@@ -9,7 +9,7 @@ public class Ocorrencia {
 	private String estado;
 	private LocalDate data_inicial;
 	private LocalDate data_final;
-	private String localizacao;
+	private Localizacao l;
 	private int nivel_urgencia;
 	private String categoria;
 	
@@ -26,14 +26,14 @@ public class Ocorrencia {
 	 * contrutor ocorrencia
 	 */
 	public Ocorrencia(String nome_autor, String titulo, String descricao, String estado, LocalDate data_inicial,
-			LocalDate data_final, String localizacao, int nivel_urgencia,String categoria) {
+			LocalDate data_final, Localizacao l, int nivel_urgencia,String categoria) {
 		this.nome_autor = nome_autor;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.estado = estado;
 		this.data_inicial = data_inicial;
 		this.data_final = data_final;
-		this.localizacao = localizacao;
+		this.l = l;
 		this.nivel_urgencia = nivel_urgencia;
 		this.categoria=categoria;
 	}
@@ -70,17 +70,16 @@ public class Ocorrencia {
 	public LocalDate getData_final() {
 		return data_final;
 	}
-	/**
-	 * @return the localizacao
-	 */
-	public String getLocalizacao() {
-		return localizacao;
-	}
+
+	
 	/**
 	 * @return the nivel_urgencia
 	 */
 	public int getNivel_urgencia() {
 		return nivel_urgencia;
+	}
+	public Localizacao getL() {
+		return l;
 	}
 	/**
 	 * @param titulo the titulo to set
@@ -100,12 +99,7 @@ public class Ocorrencia {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	/**
-	 * @param localizacao the localizacao to set
-	 */
-	public void setLocalizacao(String localizacao) {
-		this.localizacao = localizacao;
-	}
+
 	/**
 	 * @param nivel_urgencia the nivel_urgencia to set
 	 */
