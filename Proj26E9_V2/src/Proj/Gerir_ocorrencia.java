@@ -8,6 +8,7 @@ public class Gerir_ocorrencia {
 	private ArrayList<Categoria> lista_categoria;
 	private ArrayList<Equipa> lista_equipas;
 	private ArrayList<Denuncia>denuncias;
+	private ArrayList<Localizacao> lista_localizacoes;
 	
 	/**
 	 * Construtor do gerir ocorrencia
@@ -17,6 +18,8 @@ public class Gerir_ocorrencia {
 		this.lista_utilizadores = new ArrayList<Utilizador>();
 		this.lista_categoria = new ArrayList<Categoria>();
 		this.lista_equipas = new ArrayList<Equipa>();
+		this.denuncias = new ArrayList<Denuncia>();
+		this.lista_localizacoes = new ArrayList<Localizacao>();
 	}
 	
 	/**
@@ -80,16 +83,12 @@ public class Gerir_ocorrencia {
 	 * @return 1 se encontrar se não 0 ->procura titulo
 	 */
 	public int existe_ocorrencias(String titulo) {
-		for(Utilizador u:lista_utilizadores) {
-			for (Ocorrencia o:lista_correncias) {
-				if(o.getTitulo().equals(titulo)) {
-					return 1;
-				}
+		for (Ocorrencia o : lista_correncias) {
+			if (o.getTitulo().equals(titulo)) {
+				return 1;
 			}
 		}
 		return 0;
-		
-		
 	}
 	
 	/**
@@ -161,25 +160,6 @@ public class Gerir_ocorrencia {
 	}
 	
 	
-	
-	/**
-	 * @param localizacao
-	 * @param nome_utilizador
-	 * @param titulo_original
-	 * edita localizacao
-	 */
-	public void editar_localizacao_ocorrencia(String localizacao,String nome_utilizador,String titulo_original) {
-		for(Utilizador u:lista_utilizadores) {
-		for(Ocorrencia o:lista_correncias) {
-				if(u.getNome().equals(nome_utilizador)) {
-					if(o.getTitulo().equals(titulo_original)) {
-						o.setLocalizacao(localizacao);
-					}
-				}
-			}
-		}
-	}
-	
 	/**
 	 * @param nivel
 	 * @param nome_utilizador
@@ -213,14 +193,11 @@ public class Gerir_ocorrencia {
 	 * lista das ocorrencias criadas pelo utilizador
 	 */
 	public void lista_ocorrencia_utilizador(String nome_login) {
-		for(Utilizador u:lista_utilizadores) {
-				for(Ocorrencia o:lista_correncias) {
-					if(o.getNome_autor().equals(nome_login)) {
-						System.out.println(o.toString());
-				}
+		for(Ocorrencia o:lista_correncias) {
+			if(o.getNome_autor().equals(nome_login)) {
+				System.out.println(o.toString());
 			}
-			
-			}
+		}
 	}
 	
 	
@@ -250,19 +227,38 @@ public class Gerir_ocorrencia {
 	 * @param nome_login utilizador logado
 	 * @param user tipo do utilizador
 	 * @param titulo titulo da ocorrencia a ver
+	 * @param nomeEquipa nome da equipa (usado quando user é Equipa)
 	 */
-	public void lista_ver_detalhes(String nome_login, String user, String titulo) {
-		for(Utilizador u:lista_utilizadores) {
-			for(Ocorrencia o:lista_correncias) {
-				if(o.getTitulo().equals(titulo)) {
-					if(u.getTipo_utilizador().equals("Utilizador")) {
-						o.detalhes();
-					}else {
-						o.detalhes();
+	public void lista_ver_detalhes(String nome_login, String user, String titulo, String nomeEquipa) {
+		for (Ocorrencia o : lista_correncias) {
+			if (o.getTitulo().equals(titulo)) {
+				if (user.equals("Admin")) {
+					System.out.println(o.detalhes());
+					return;
+				} else if (user.equals("Equipa")) {
+					if (o.getNomeEquipaAtribuida().equals(nomeEquipa)) {
+						System.out.println(o.detalhes());
+					} else {
+						System.out.println("**************************************************************************************");
+						System.out.println("*                                                                                    *");
+						System.out.println("*         Sem permissao para ver esta ocorrencia / No permission to view this        *");
+						System.out.println("*                                                                                    *");
+						System.out.println("**************************************************************************************");
 					}
+					return;
+				} else {
+					if (o.getNome_autor().equals(nome_login)) {
+						System.out.println(o.detalhes());
+					} else {
+						System.out.println("**************************************************************************************");
+						System.out.println("*                                                                                    *");
+						System.out.println("*         Sem permissao para ver esta ocorrencia / No permission to view this        *");
+						System.out.println("*                                                                                    *");
+						System.out.println("**************************************************************************************");
+					}
+					return;
 				}
 			}
-			
 		}
 	}
 	
@@ -344,7 +340,7 @@ public class Gerir_ocorrencia {
 			for(Ocorrencia o:lista_correncias) {
 				if(u.getNome().equals(utilizador)) {
 					if(o.getTitulo().equals(titulo)) {
-						o.toString();
+						System.out.println(o.toString());
 						existe=1;
 					}
 				}
@@ -369,7 +365,7 @@ public class Gerir_ocorrencia {
 			int existe=0;
 			for(Ocorrencia o:lista_correncias) {
 					if(o.getTitulo().equals(titulo)) {
-						o.toString();
+						System.out.println(o.toString());
 						existe=1;
 					}
 				
@@ -395,8 +391,8 @@ public class Gerir_ocorrencia {
 		for(Utilizador u:lista_utilizadores) {
 			for(Ocorrencia o:lista_correncias) {
 				if(u.getNome().equals(utilizador)) {
-					if(o.getTitulo().equals(categoria)) {
-						o.toString();
+					if(o.getCategoria().equals(categoria)) {
+						System.out.println(o.toString());
 						existe=1;
 					}
 				}
@@ -419,8 +415,8 @@ public class Gerir_ocorrencia {
 	public void pesquisar_categoria(String categoria) {
 		int existe =0;
 		for(Ocorrencia o:lista_correncias) {
-			if(o.getTitulo().equals(categoria)) {
-				o.toString();
+			if(o.getCategoria().equals(categoria)) {
+				System.out.println(o.toString());
 				existe=1;
 			}
 		}
@@ -686,7 +682,7 @@ public class Gerir_ocorrencia {
 	public int total_denuncias_equipa() {
 		int total=0;
 		for(Denuncia d :denuncias) {
-			if(d.getTipo().equals("Equipa")) {
+			if(d.getTipo().equals("EQUIPA")) {
 				total++;
 			}
 		}
@@ -701,7 +697,7 @@ public class Gerir_ocorrencia {
 	public int total_denuncias_ocorrencias() {
 		int total=0;
 		for(Denuncia d :denuncias) {
-			if(d.getTipo().equals("Equipa")) {
+			if(d.getTipo().equals("OCORRENCIA")) {
 				total++;
 			}
 		}
@@ -756,10 +752,95 @@ public class Gerir_ocorrencia {
 	    }
 	}
 	
+	/**
+	 * lista as equipas
+	 */
+	public void listar_equipas() {
+		for(Equipa e:lista_equipas) {
+			System.out.println(e.toString());
+		}
+	}
 	
+	/**
+	 * @param nomeEquipa
+	 * @param categoria
+	 * @param mes
+	 * filtrar por mes ,  a equipa
+	 */
+	public void filtrar_mes_equipa_categoria(String nomeEquipa, String categoria, int mes) {
+	    if (mes >= 1 && mes <= 12) {
+	        for (Ocorrencia o : lista_correncias) {
+	            if (o.getNomeEquipaAtribuida().equals(nomeEquipa) && o.getCategoria().equals(categoria) && o.getData_inicial().getMonthValue() == mes) {
+	                System.out.println(o.toString());
+	            }
+	        }
+	    } else {
+	        System.out.println("**************************************************************************************");
+	        System.out.println("*                                                                                    *");
+	        System.out.println("*                     Mes invalido / Invalid month                                   *");
+	        System.out.println("*                                                                                    *");
+	        System.out.println("**************************************************************************************");
+	    }
+	}
+
+	/**
+	 * @param nomeEquipa
+	 * @param categoria
+	 * @param ano
+	 * filtrar por ano, a equipa
+	 */
+	public void filtrar_ano_equipa_categoria(String nomeEquipa, String categoria, int ano) {
+	    if (ano >= 2000 && ano <= 2100) {
+	        for (Ocorrencia o : lista_correncias) {
+	            if (o.getNomeEquipaAtribuida().equals(nomeEquipa) && o.getCategoria().equals(categoria) && o.getData_inicial().getYear() == ano) {
+	                System.out.println(o.toString());
+	            }
+	        }
+	    } else {
+	        System.out.println("**************************************************************************************");
+	        System.out.println("*                                                                                    *");
+	        System.out.println("*                         Ano invalido / Invalid year                                *");
+	        System.out.println("*                                                                                    *");
+	        System.out.println("**************************************************************************************");
+	    }
+	}
 	
-	
-	
-	
+	/**
+	 * @param piso
+	 * @param sala
+	 * verifica sala para os edificios menos o sao tome
+	 */
+	public  void verificarSala(int piso, int sala) {
+
+	    int min = piso * 100;
+	    int max = min + 21;
+
+	    if (piso >= 1 && piso <= 6 && sala >= min && sala <= max) {
+	        System.out.println("Sala válida no piso " + piso);
+	    } else {
+	        System.out.println("Sala inválida");
+	    }
+	}
+		
+		/**
+		 * @param l
+		 * regista localizacao
+		 */
+		public void registar_Loc(Localizacao l) {
+			lista_localizacoes.add(l);
+		}
+		
+		/**
+		 * @param sala
+		 * verifica sala para sao tome
+		 */
+		public void verificarSalaSaoTome(int sala) {
+
+		    if (sala >= 700 && sala <= 721) {
+		        System.out.println("Sala válida no São Tomé");
+		    } else {
+		        System.out.println("Sala inválida no São Tomé");
+		    }
+		}
 	
 }

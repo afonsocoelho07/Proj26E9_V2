@@ -1,10 +1,9 @@
 package Proj;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Denuncia {
 	private String nomeUtilizador;
-    private String tipo; //  "EQUIPA", "OCORRENCIA"
+    private String tipo; 
     private String equipa; 
     private String tituloOcorrencia;
     private String descricao;
@@ -27,6 +26,15 @@ public class Denuncia {
 	public String getEquipa() {
 		return equipa;
 	}
+	public Denuncia(String nomeUtilizador, String tipo, String equipa, String tituloOcorrencia, String descricao,
+			LocalDate data) {
+		this.nomeUtilizador = nomeUtilizador;
+		this.tipo = tipo;
+		this.equipa = equipa;
+		this.tituloOcorrencia = tituloOcorrencia;
+		this.descricao = descricao;
+		this.data = data;
+	}
 	/**
 	 * @return the tituloOcorrencia
 	 */
@@ -47,9 +55,14 @@ public class Denuncia {
 	}
 	@Override
 	public String toString() {
-		return "Denuncia :" + nomeUtilizador + "| Tipo: " + tipo + "| Equipa: " + equipa+ "| TituloOcorrencia: " + tituloOcorrencia + "| Descricao: " + descricao + "| Data: " + data;
+		if(tipo.equals("EQUIPA")) {
+			return "Denuncia :" + nomeUtilizador + "| Tipo: " + tipo + "| Equipa: " + equipa + "| Descricao: " + descricao + "| Data: " + data;
+	
+		}else {
+			return "Denuncia :" + nomeUtilizador + "| Tipo: " + tipo + "| TituloOcorrencia: " + tituloOcorrencia + "| Descricao: " + descricao + "| Data: " + data;
+			
+		}
 	}
-    
     
 
 }

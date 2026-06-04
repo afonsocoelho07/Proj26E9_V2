@@ -95,6 +95,16 @@ public class Equipa {
 
 
 
+	@Override
+	public String toString() {
+		return "Equipa: " + nome + "| Categoria: " + categoria + "| Lotacao: " + lotacao + "| Membros:" + membros
+				+ "| Lotacao ocupada=" + lotacao_ocupada ;
+	}
+
+
+
+
+
 	public void setLotacao_ocupada(int lotacao_ocupada) {
 		this.lotacao_ocupada = lotacao_ocupada;
 	}

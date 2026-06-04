@@ -2,14 +2,14 @@ package Proj;
 import java.time.LocalDate;
 import java.util.ArrayList;
 public class Ocorrencia {
-	private ArrayList<Categoria> lista_categoria;
+	private ArrayList<Categoria> lista_categoria = new ArrayList<Categoria>();
 	private String nome_autor;
 	private String titulo;
 	private String descricao;
 	private String estado;
 	private LocalDate data_inicial;
 	private LocalDate data_final;
-	private String localizacao;
+	private Localizacao l;
 	private int nivel_urgencia;
 	private String categoria;
 	private String nomeEquipaAtribuida = "Nenhuma";
@@ -43,14 +43,14 @@ public class Ocorrencia {
 	 * contrutor ocorrencia
 	 */
 	public Ocorrencia(String nome_autor, String titulo, String descricao, String estado, LocalDate data_inicial,
-			LocalDate data_final, String localizacao, int nivel_urgencia,String categoria) {
+			LocalDate data_final, Localizacao l, int nivel_urgencia,String categoria) {
 		this.nome_autor = nome_autor;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.estado = estado;
 		this.data_inicial = data_inicial;
 		this.data_final = data_final;
-		this.localizacao = localizacao;
+		this.l = l;
 		this.nivel_urgencia = nivel_urgencia;
 		this.categoria=categoria;
 	}
@@ -90,8 +90,8 @@ public class Ocorrencia {
 	/**
 	 * @return the localizacao
 	 */
-	public String getLocalizacao() {
-		return localizacao;
+	public Localizacao getL() {
+		return l;
 	}
 	/**
 	 * @return the nivel_urgencia
@@ -117,17 +117,16 @@ public class Ocorrencia {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	/**
-	 * @param localizacao the localizacao to set
-	 */
-	public void setLocalizacao(String localizacao) {
-		this.localizacao = localizacao;
-	}
+	
 	/**
 	 * @param nivel_urgencia the nivel_urgencia to set
 	 */
 	public void setNivel_urgencia(int nivel_urgencia) {
 		this.nivel_urgencia = nivel_urgencia;
+	}
+	
+	public void setData_final(LocalDate data_final) {
+		this.data_final = data_final;
 	}
 	
 	@Override
@@ -138,24 +137,36 @@ public class Ocorrencia {
 		return "Ocorrencia/Occurrence: " + titulo + " | Estado/State: " + estado + " | Data de registo/Registration date:" + data_inicial ;
 	}
 	
+	/**
+	 * @return
+	 * imprime detalhes 
+	 */
 	public String detalhes() {
+		if (this.categoria != null) {
+			if (lista_categoria.isEmpty()) {
+				lista_categoria.add(new Categoria(this.categoria));
+			} else {
+				lista_categoria.set(0, new Categoria(this.categoria));
+			}
+		}
+
 		for(Categoria c:lista_categoria) {
 			if(estado.equals("Concluido")) {
 				
-				return "Ocorrencia/Occurrence: "+titulo+" | Descrição/Description: "+descricao+" | Estado/State: "+estado+" | Categoria/Category: "+c.getNome() +" | Data de registo/Registration date:" + data_inicial + " | Data final/End date: "+data_final;
+				// CORREÇÃO: Adicionada a proteção (l != null ? l.toString() : "") para evitar NullPointerException caso a localização seja nula
+				return "Ocorrencia/Occurrence: "+titulo+" | Descrição/Description: "+descricao+(l != null ? l.toString() : "")+" | Estado/State: "+estado+" | Categoria/Category: "+c.getNome() +" | Data de registo/Registration date:" + data_inicial + " | Data final/End date: "+data_final;
 			
 			}else {
 				
-				return "Ocorrencia/Occurrence: "+titulo+" | Descrição/Description: "+descricao+" | Estado/State: "+estado+" | Categoria/Category: "+c.getNome() +" | Data de registo/ Registration date:" + data_inicial;
+				// CORREÇÃO: Adicionada a proteção (l != null ? l.toString() : "") para evitar NullPointerException caso a localização seja nula
+				return "Ocorrencia/Occurrence: "+titulo+" | Descrição/Description: "+descricao+(l != null ? l.toString() : "")+" | Estado/State: "+estado+" | Categoria/Category: "+c.getNome() +" | Data de registo/ Registration date:" + data_inicial;
 			
 			}
 		}
 		return null;
 		
 	}
-	public void setData_final(LocalDate data_final) {
-		this.data_final = data_final;
-	}
+	
 	
 	
 }
