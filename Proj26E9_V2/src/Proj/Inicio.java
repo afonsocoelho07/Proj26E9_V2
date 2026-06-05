@@ -52,7 +52,6 @@ public class Inicio {
 						metedos.registar_utilizador(uti);
 						System.out.println("**************************************************************************************");
 						System.out.println("*                                                                                    *");
-						
 						System.out.println("* Utilizador Criado com sucesso como: " + tipo_nome);
 						System.out.println("* User Successfully created as: " + tipo_nome);
 						System.out.println("*                                                                                    *");
@@ -193,31 +192,43 @@ public class Inicio {
 							
 							
 							if (user.equals("Utilizador")) {
+								System.out.println("*                                                                                    *");
 								System.out.println("*        1-Criar Ocorrencia/Create Incident                                          *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        2-Eleminar Ocorrencia/Eliminate occurrence                                  *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        3-Denunciar equipa/Report team                                              *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        4-Denunciar trabalho/Report job                                             *");
 								
 							}
-
+							System.out.println("*                                                                                    *");
 							System.out.println("*        5-Ver detalhes/View Details                                                 *");
+							System.out.println("*                                                                                    *");
 							System.out.println("*        6-Lista Ocorrencias/List of Occurrences                                     *");
+							System.out.println("*                                                                                    *");
 							System.out.println("*        7-Editar Ocorrencia/Edit Occurrence                                         *");
+							System.out.println("*                                                                                    *");
 							System.out.println("*        8-Lista Categorias/List categories                                          *");
 							
-							
 							if(user.equals("Admin")) {
+								System.out.println("*                                                                                    *");
 								System.out.println("*        9-Criar Categoria/Create Category                                           *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        10-Criar Equipa/Create Team                                                 *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        11-Eleminar Membro/Delete Member                                            *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        12-Eleminar Equipa/Delete Team                                              *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        13-Denuncia Lista/Report list                                               *");
+								System.out.println("*                                                                                    *");
 								System.out.println("*        14-Listar Equipas/List Teams                                                *");
 							}else if (user.equals("Equipa") || user.equals("Admin")) {
-								
+								System.out.println("*                                                                                    *");
 								System.out.println("*        15-Filtrar mes/ano /Filter by month/year                                *");
 							}
-							
+							System.out.println("*                                                                                    *");
 							System.out.println("*        16-Logout                                                                   *");
 							System.out.println("**************************************************************************************");
 							System.out.println("*                                                                                    *");
@@ -256,7 +267,7 @@ public class Inicio {
 										if (escolher_Edificio == 1) {
 
 											System.out.println("*                                                                                    *");
-										    System.out.print("Escolher o piso (1 a 6): ");
+										    System.out.print("*    Escolher o piso (1 a 6): ");
 										    int escolher_Piso = ler.nextInt();
 										    String edificio = "Principal";
 											System.out.println("*                                                                                    *");
@@ -278,7 +289,9 @@ public class Inicio {
 
 										            } else if (escolher_tipo == 2) {
 										            	System.out.println("*                                                                                    *");
-										                System.out.print("*  Biblioteca-1, Magna-2, Secretaria-3, WC-4, Corredor-5: ");
+										                System.out.println("*  1-Biblioteca, 2-Magna, 3-Secretaria, 4-WC, 5-Corredor                             *");
+
+										                System.out.print("* Opcao: ");
 										                int escolher_outros = ler.nextInt();
 										                System.out.println("*                                                                                    *");
 
@@ -316,9 +329,10 @@ public class Inicio {
 										            System.out.println("*               Escolher Salas 1 / Outros 2: ");
 										            int escolher_tipo2 = ler.nextInt();
 
+										            System.out.println("*                                                                                    *");
 										            if (escolher_tipo2 == 1) {
 
-										                System.out.print("Escolher Sala: ");
+										                System.out.print("*    Escolher Sala: ");
 										                int escolher_sala = ler.nextInt();
 
 										                metedos.verificarSala(escolher_Piso, escolher_sala);
@@ -326,9 +340,9 @@ public class Inicio {
 
 										            } else if (escolher_tipo2 == 2) {
 										            	System.out.println("*                                                                                    *");
-										                System.out.print("WC-1, Bar-2, Sala de Convivio-3, Gabinete De ingresso-4, Corredor-5 : ");
+										                System.out.print("* 1-WC, 2-Bar, 3-Sala de Convivio, 4-Gabinete De ingresso, 5-Corredor : ");
 										                int escolher_outros = ler.nextInt();
-
+											            System.out.println("*                                                                                    *");
 										                String Localfinal = "";
 
 										                if (escolher_outros == 1) {
@@ -365,13 +379,13 @@ public class Inicio {
 										            	System.out.println("*                                                                                    *");
 										                System.out.print("Escolher Sala: ");
 										                int escolher_sala = ler.nextInt();
-
+											            System.out.println("*                                                                                    *");
 										                metedos.verificarSala(escolher_Piso, escolher_sala);
 										                c = new Localizacao(edificio,escolher_Piso, "Sala ", escolher_sala) ;
 
 										            } else if (escolher_tipo3 == 2) {
 										            	System.out.println("*                                                                                    *");
-										                System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										                System.out.print("*    1-WC , 2-Corredor, 3-Mesas de Convívio : ");
 										                int escolher_outros = ler.nextInt();
 
 										                String Localfinal = "";
@@ -404,6 +418,7 @@ public class Inicio {
 										            System.out.println("*  Escolher Salas 1 / Outros 2: ");
 										            int escolher_tipo4 = ler.nextInt();
 
+										            System.out.println("*                                                                                    *");
 										            if (escolher_tipo4 == 1) {
 
 										                System.out.print("Escolher Sala: ");
@@ -414,9 +429,9 @@ public class Inicio {
 
 										            } else if (escolher_tipo4 == 2) {
 										            	System.out.println("*                                                                                    *");
-										            	System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										            	System.out.print("*    1-WC , 2-Corredor, 3-Mesas de Convívio : ");
 										                int escolher_outros = ler.nextInt();
-
+										                System.out.println("*                                                                                    *");
 										                String Localfinal = "";
 
 										                if (escolher_outros == 1) {
@@ -443,12 +458,12 @@ public class Inicio {
 										        	System.out.println("*                                                                                    *");
 										            System.out.println("*                           Piso 5 selecionado                                       *");
 										            System.out.println("*                                                                                    *");
-										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										            System.out.println("*    Escolher Salas 1 / Outros 2: ");
 										            int escolher_tipo5 = ler.nextInt();
-
+										            System.out.println("*                                                                                    *");
 										            if (escolher_tipo5 == 1) {
 										            	System.out.println("*                                                                                    *");
-										                System.out.print("Escolher Sala: ");
+										                System.out.print("*   Escolher Sala: ");
 										                int escolher_sala = ler.nextInt();
 
 										                metedos.verificarSala(escolher_Piso, escolher_sala);
@@ -456,7 +471,7 @@ public class Inicio {
 
 										            } else if (escolher_tipo5 == 2) {
 										            	System.out.println("*                                                                                    *");
-										            	System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										            	System.out.print("*    1-WC , 2-Corredor, 3-Mesas de Convívio : ");
 										                int escolher_outros = ler.nextInt();
 
 										                String Localfinal = "";
@@ -481,13 +496,14 @@ public class Inicio {
 										            break;
 
 										        case 6: //piso 6
-										            System.out.println("Piso 6 selecionado");
-										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										        	System.out.println("*                                                                                    *");
+										            System.out.println("*                            Piso 6 selecionado                                      *");
+										            System.out.println("*    Escolher Salas 1 / Outros 2: ");
 										            int escolher_tipo6 = ler.nextInt();
-
+										            System.out.println("*                                                                                    *");
 										            if (escolher_tipo6 == 1) {
 
-										                System.out.print("Escolher Sala: ");
+										                System.out.print("*   Escolher Sala: ");
 										                int escolher_sala = ler.nextInt();
 
 										                metedos.verificarSala(escolher_Piso, escolher_sala);
@@ -495,7 +511,7 @@ public class Inicio {
 
 										            } else if (escolher_tipo6 == 2) {
 
-										            	System.out.print("WC-1 , Corredor-2, Mesas de Convívio-3 : ");
+										            	System.out.print("*    1-WC , 2-Corredor, 3-Mesas de Convívio : ");
 										                int escolher_outros = ler.nextInt();
 
 										                String Localfinal = "";
@@ -518,15 +534,18 @@ public class Inicio {
 										            break;
 
 										        default:
-										            System.out.println("Piso inválido");
+										        	System.out.println("*                                                                                    *");
+								                    System.out.println("*                      Piso inválido/Invalid Option                                  *");
+								                    System.out.println("*                                                                                    *");
+								                    break;
 										    }
 
 										/// 2- edificio
 										
 										} else if (escolher_Edificio == 2) {
 											System.out.println("*************************************************************************************");
-
-										    System.out.print("Escolher o piso (1 a 3): ");
+											System.out.println("*                                                                                    *");
+										    System.out.print("*    Escolher o piso (1 a 3): ");
 										    int escolher_Piso_Estacionamento = ler.nextInt();
 										    String edificio = "Parque de Estacionamento";
 										    
@@ -549,7 +568,9 @@ public class Inicio {
 										            break;
 
 										        default:
-										            System.out.println("Piso inválido!");
+										        	System.out.println("*                                                                                    *");
+								                    System.out.println("*                      Piso inválido/Invalid Option                                  *");
+								                    System.out.println("*                                                                                    *");
 										            break;
 										    }
 										
@@ -557,16 +578,18 @@ public class Inicio {
 										
 										} else if (escolher_Edificio == 3) {
 											System.out.println("*************************************************************************************");
-										    System.out.print("Escolher o piso (1 a 2): ");
+											System.out.println("*                                                                                    *");
+										    System.out.print("*     Escolher o piso (1 a 2): ");
 										    int escolher_Piso_SaoTome = ler.nextInt();
 										    String edificio = "São Tomé";
 
 										    switch (escolher_Piso_SaoTome) {
 
 										        case 1: // piso 1
-
-										            System.out.println("Piso 1 selecionado");
-										            System.out.println("Cantina-1 Sala de Convivio-2 Wc-3 Corredor-4");
+										        	System.out.println("*                                                                                    *");
+										            System.out.println("*                           Piso 1 selecionado                                       *");
+										            System.out.println("*                                                                                    *");
+										            System.out.print("*       1-Cantina, 2-Sala de Convivio, 3-Wc, 4-Corredor: ");
 
 										            int escolher_outros = ler.nextInt();
 										            String Localfinal = "";
@@ -594,8 +617,10 @@ public class Inicio {
 										            break;
 
 										        case 2: //piso 2 
-										            System.out.println("Piso 2 selecionado");
-										            System.out.println("Escolher Salas 1 / Outros 2: ");
+										        	System.out.println("*                                                                                    *");
+										            System.out.println("*                              Piso 2 selecionado                                    *");
+										            System.out.println("*                                                                                    *");
+										            System.out.println("*   Escolher Salas 1 / Outros 2: ");
 
 										            int escolher_tipo2 = ler.nextInt();
 
@@ -624,11 +649,15 @@ public class Inicio {
 										                    c = new Localizacao(edificio, escolher_Piso_SaoTome, Localfinal2, 0);
 
 										                } else {
-										                    System.out.println("Opção inválida");
+										                	System.out.println("*                                                                                    *");
+										                    System.out.println("*                             Opção inválida                                         *");
+										                    System.out.println("*                                                                                    *");
 										                }
 										            }
 										            else {
-										                  System.out.println("Opção inválida"); 
+										            	System.out.println("*                                                                                    *");
+									                    System.out.println("*                             Opção inválida                                         *");
+									                    System.out.println("*                                                                                    *");
 										             }
 
 										            break;
@@ -638,7 +667,8 @@ public class Inicio {
 										    
 										} else if (escolher_Edificio == 4) {
 											System.out.println("*************************************************************************************");
-										    System.out.println("Espelho D'agua selecionado");
+											System.out.println("*                                                                                   *");
+										    System.out.println("*                     Espelho D'agua selecionado                                    *");
 
 										    String edificio = "Espelho D'agua";
 										    String Localfinal = "Espelho D'agua";
@@ -649,10 +679,10 @@ public class Inicio {
 										/// 5-edificio
 										
 										} else if (escolher_Edificio == 5) {
+											System.out.println("*                                                                                    *");
+										    System.out.println("*                              Jardim selecionado                                    *");
 
-										    System.out.println("Jardim selecionado");
-
-										    System.out.print("Escolher zona (1 a 3): ");
+										    System.out.print("*      Escolher zona (1 a 3): ");
 										    int escolher_Zona_Jardim = ler.nextInt();
 										    String edificio = "Jardim";
 
@@ -677,12 +707,15 @@ public class Inicio {
 										            break;
 
 										        default:
-										            System.out.println("Opção inválida");
+										        	System.out.println("*                                                                                    *");
+								                    System.out.println("*                             Opção inválida                                         *");
+								                    System.out.println("*                                                                                    *");
 										            break;
 										    }
 										} else {
-
-										    System.out.println("Edifício inválido");
+											System.out.println("*                                                                                    *");
+						                    System.out.println("*                             Edificio inválido                                      *");
+						                    System.out.println("*                                                                                    *");
 										}
 										
 										System.out.println("*                                                                                    *");
@@ -690,8 +723,8 @@ public class Inicio {
 										int nivel_ocorrencia = ler.nextInt();
 										ler.nextLine();
 										Ocorrencia oc = new Ocorrencia(nome_login, titulo_ocorrencia, descricao_ocorrencia, "Aberto", data_inicio, null, c, nivel_ocorrencia, categoria);
-										metedos.registar_ocorrencia(oc);
-										metedos.atribuir_trabalho(oc);
+										metedos.atribuir_trabalho(oc);   
+										metedos.registar_ocorrencia(oc); 
 										System.out.println("*                                                                                    *");
 										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
@@ -718,24 +751,19 @@ public class Inicio {
 								System.out.print("* Título Ocorrencia/Title Occurrence : ");
 								String titulo_ocorrencia = ler.nextLine();
 								if(metedos.eliminar_ocorrencia(nome_login, titulo_ocorrencia)==1) {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*                Eleminada com sucesso/Successfully eliminated                       *");
 									System.out.println("*                                                                                    *");
-									System.out.println("**************************************************************************************");
 								} else {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*     Impossivel eleminar ocorrencia/It is impossible to eliminate the occurrence    *");
 									System.out.println("*                                                                                    *");
-									System.out.println("**************************************************************************************");
 								}
 								break;
 								
 							//denunciar equipa
 							case 3:
 								if (user.equals("Utilizador")) {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*      Registar denuncia a equipa / Register a complaint with the team               *");
 									System.out.println("*                                                                                    *");
@@ -754,31 +782,24 @@ public class Inicio {
 										LocalDate denuncia_equipa = LocalDate.now();
 										Denuncia d_equipa = new Denuncia(nome_login, "EQUIPA", denunciar_equipa_nome, null, denunciar_equipa_descricao, denuncia_equipa);
 										metedos.registar_denuncia(d_equipa);
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*                  Equipa Denunciada/Team reported                                   *");
 										System.out.println("*                                                                                    *");
-										System.out.println("**************************************************************************************");
 									} else {
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*              Equipa invalida/Invalid team                                          *");
 										System.out.println("*                                                                                    *");
-										System.out.println("**************************************************************************************");
 									}
 								} else {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*                Tipo Utilizador Invalido/Invalid User Type                          *");
 									System.out.println("*                                                                                    *");
-									System.out.println("**************************************************************************************");
 								}
 								break;
 							    
 							//denunciar trabalho
 							case 4:
 								if (user.equals("Utilizador")) {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*               Registar denuncia trabalho / Register work report                    *");
 									System.out.println("*                                                                                    *");
@@ -787,31 +808,29 @@ public class Inicio {
 									System.out.print("* Nome da Ocorrencia/ Incident Name: ");
 									String denunciar_trabalho_nome = ler.nextLine();
 									System.out.println("*                                                                                    *");
-									if (metedos.existe_titulo_utilizador(nome_login, denunciar_trabalho_nome) == 1) {
+									if (metedos.existe_titulo_com_equipa(denunciar_trabalho_nome) == 1) {
 										System.out.print("* Descrição denuncia/ Description denounces: ");
 										String denunciar_trabalho_descricao = ler.nextLine();
 										System.out.println("*                                                                                    *");
 										LocalDate denuncia_trabalho = LocalDate.now();
 										Denuncia d_trabalho = new Denuncia(nome_login, "OCORRENCIA", null, denunciar_trabalho_nome, denunciar_trabalho_descricao, denuncia_trabalho);
 										metedos.registar_denuncia(d_trabalho);
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*                  Trabalho Denunciado/Job reported                                  *");
 										System.out.println("*                                                                                    *");
-										System.out.println("**************************************************************************************");
+									} else if (metedos.existe_titulo(denunciar_trabalho_nome) == 1) {
+										System.out.println("*                                                                                    *");
+										System.out.println("*         Esta ocorrencia ainda nao tem equipa atribuida / No team assigned yet      *");
+										System.out.println("*                                                                                    *");
 									} else {
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*              Trabalho invalido/Invalid job                                         *");
 										System.out.println("*                                                                                    *");
-										System.out.println("**************************************************************************************");
 									}
 								} else {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*                Tipo Utilizador Invalido/Invalid User Type                          *");
 									System.out.println("*                                                                                    *");
-									System.out.println("**************************************************************************************");
 								}
 								break;
 							// ver detalhes
@@ -822,7 +841,6 @@ public class Inicio {
 								if (metedos.existe_titulo(titulo_ocorrencia1) == 1) {
 									metedos.lista_ver_detalhes(nome_login, user, titulo_ocorrencia1, nome_equipa_entrar);
 								} else {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*              Título invalido/Invalid Title                                         *");
 									System.out.println("*                                                                                    *");
@@ -841,11 +859,9 @@ public class Inicio {
 								
 							// editar ocorrencia
 							case 7:
-								System.out.println("**************************************************************************************");
 								System.out.println("*                                                                                    *");
 								System.out.println("*           Título Ocorrencia/Title Occurrence                                       *");
 								System.out.println("*                                                                                    *");
-								System.out.println("**************************************************************************************");
 								System.out.print("* Titulo: ");
 								String titulo_editar = ler.nextLine();
 								// Utilizador edita as suas próprias ocorrências
@@ -864,7 +880,7 @@ public class Inicio {
 										System.out.println("*                                                                                    *");
 										System.out.print("* Opcao/Option: ");
 										int escolha_menu_editar = ler.nextInt();
-										System.out.println("* *");
+										System.out.println("*                                                                                    *");
 										System.out.println("**************************************************************************************");
 										ler.nextLine();
 										switch (escolha_menu_editar) {
@@ -894,38 +910,31 @@ public class Inicio {
 											if (nivel_editar >= 1 && nivel_editar <= 5) {
 												metedos.editar_nivel_ocorrencia(nivel_editar, nome_login, titulo_editar);
 											} else {
-												System.out.println("**************************************************************************************");
 												System.out.println("*                                                                                    *");
 												System.out.println("*                         Nivel  Invalido/Invalid Level                              *");
 												System.out.println("*                                                                                    *");
-												System.out.println("**************************************************************************************");
 											}
 											break;
 										case 4:
 											break;
 										default:
-											System.out.println("**************************************************************************************");
 											System.out.println("*                                                                                    *");
 											System.out.println("*                     Opção Invalida/Invalid option                                  *");
 											System.out.println("*                                                                                    *");
-											System.out.println("**************************************************************************************");
 											break;
 										}
 									} else {
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*                        Título Invalido/Invalid title                               *");
 										System.out.println("*                                                                                    *");
-										System.out.println("**************************************************************************************");
 									}
 								// Admin/Equipa edita o estado de qualquer ocorrência
 								} else {
 									if (metedos.existe_ocorrencias(titulo_editar) == 1) {
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
-										System.out.println("* 1-Editar Estado/Edit Status                             *");
+										System.out.println("* 1-Editar Estado/Edit Status                                                        *");
 										System.out.println("*                                                                                    *");
-										System.out.println("* 2-Voltar ao Inicio/Back to Top                          *");
+										System.out.println("* 2-Voltar ao Inicio/Back to Top                                                     *");
 										System.out.println("*                                                                                    *");
 										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
@@ -960,20 +969,16 @@ public class Inicio {
 												System.out.println("*                                                                                    *");
 											}
 										} else if (escolha_menu_editar == 2) {
-											// volta ao menu principal — não faz nada
+											// volta ao menu principal
 										} else {
-											System.out.println("**************************************************************************************");
 											System.out.println("*                                                                                    *");
 											System.out.println("*                     Opção Invalida/Invalid option                                  *");
 											System.out.println("*                                                                                    *");
-											System.out.println("**************************************************************************************");
 										}
 									} else {
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*                        Título Invalido/Invalid title                               *");
 										System.out.println("*                                                                                    *");
-										System.out.println("**************************************************************************************");
 									}
 								}
 								break;
@@ -990,20 +995,17 @@ public class Inicio {
 									System.out.print("* Nome da Categoria : ");
 									String nome_categoria = ler.nextLine();
 									if (metedos.existe_categoria(nome_categoria) == 1) {
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*                     Categoria já existe/Category already exists                    *");
 										System.out.println("*                                                                                    *");
 									} else {
 										Categoria nova = new Categoria(nome_categoria);
 										metedos.registar_categoria(nova);
-										System.out.println("**************************************************************************************");
 										System.out.println("*                                                                                    *");
 										System.out.println("*            Categoria criada com sucesso/Category created successfully.             *");
 										System.out.println("*                                                                                    *");
 									}
 								} else {
-									System.out.println("**************************************************************************************");
 									System.out.println("*                                                                                    *");
 									System.out.println("*                Tipo Utilizador Invalido/Invalid User Type                          *");
 									System.out.println("*                                                                                    *");
@@ -1043,11 +1045,9 @@ public class Inicio {
 								
 							//eleminar Membro
 							case 11:
-								System.out.println("**************************************************************************************");
 							    System.out.println("*                                                                                    *");
 							    System.out.println("*              Eliminar Membro de Equipa / Remove Team Member                        *");
 							    System.out.println("*                                                                                    *");
-							    System.out.println("**************************************************************************************");
 							    System.out.println("*                                                                                    *");
 							    System.out.print("* Nome da Equipa / Team Name: ");
 							    String nomeEquipa_eliminar = ler.nextLine();
@@ -1065,22 +1065,18 @@ public class Inicio {
 							    
 							       
 
-							    System.out.println("**************************************************************************************");
 							    System.out.println("*                                                                                    *");
 							    if (resultado == 1) {
 							        System.out.println("*        Membro eliminado com sucesso / Member successfully removed                  *");
 							    System.out.println("*                                                                                    *");
-							    System.out.println("**************************************************************************************");
 							    }
 							    break;
 								
 							//eleminar equipa
 							case 12:
-								System.out.println("**************************************************************************************");
 							    System.out.println("*                                                                                    *");
 							    System.out.println("*                  Eliminar Equipa / Remove Team                                     *");
 							    System.out.println("*                                                                                    *");
-							    System.out.println("**************************************************************************************");
 							    System.out.println("*                                                                                    *");
 							    System.out.print("* Nome da Equipa / Team Name: ");
 							    String nomeEquipa_eliminar_eq = ler.nextLine();
@@ -1095,12 +1091,10 @@ public class Inicio {
 							    
 							        
 
-							    System.out.println("**************************************************************************************");
 							    System.out.println("*                                                                                    *");
 							    if (resultado_eq == 1) {
 							        System.out.println("*           Equipa eliminada com sucesso / Team successfully removed                  *"); 
 							    System.out.println("*                                                                                    *");
-							    System.out.println("**************************************************************************************");
 							    }
 							    break;
 								
@@ -1193,7 +1187,6 @@ public class Inicio {
 			
 		} while (escolha_menu_1 != 3);
 		// saída
-		System.out.println("**************************************************************************************");
 		System.out.println("*                                                                                    *");
 		System.out.println("*                                 A sair/Leaving                                     *");
 		System.out.println("*                                                                                    *");

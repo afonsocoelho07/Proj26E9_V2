@@ -572,36 +572,34 @@ public class Gerir_ocorrencia {
 	    }
 
 	    if (this.existe_categoria(categoria) == 0) {
-	        System.out.println("A categoria '" + categoria + "' não existe.");
+	        System.out.println("A categoria '" + categoria + "' nao existe.");
 	        return 0;
 	    }
 
-	    int equipaExiste = 0;
+	    // Localiza a equipa pelo nome e categoria
+	    Equipa equipaAlvo = null;
 	    for (Equipa e : lista_equipas) {
-	        if (e.getCategoria().equals(categoria)) {
-	            if (e.getNome().equals(nomeEquipa)) {
-	                equipaExiste = 1;
-	                break;
-	            }
+	        if (e.getNome().equals(nomeEquipa) && e.getCategoria().equals(categoria)) {
+	            equipaAlvo = e;
+	            break;
 	        }
 	    }
 
-	    if (equipaExiste == 0) {
-	        System.out.println("A equipa '" + nomeEquipa + "' não existe.");
+	    if (equipaAlvo == null) {
+	        System.out.println("A equipa '" + nomeEquipa + "' nao existe na categoria '" + categoria + "'.");
 	        return 0;
 	    }
 
-	    for (int i = 0; i < lista_equipas.size(); i++) {
-	        Equipa e = lista_equipas.get(i);
-	        if (e.getNome().equals(nomeEquipa)) {
-	            if (e.getCategoria().equals(categoria)) {
-	                lista_equipas.remove(i);
-	                return 1;
-	            }
+	    // CORRECAO: desatribui as ocorrencias pendentes desta equipa para que nao fiquem orfas
+	    for (Ocorrencia o : lista_correncias) {
+	        if (o.getNomeEquipaAtribuida().equals(nomeEquipa) && !o.getEstado().equals("Concluido")) {
+	            o.setNomeEquipaAtribuida("Nenhuma");
 	        }
 	    }
-	    System.out.println("A equipa '" + nomeEquipa + "' não foi encontrada.");
-	    return 0;
+
+	    // CORRECAO: remove a equipa da lista de equipas
+	    lista_equipas.remove(equipaAlvo);
+	    return 1;
 	}
 	
 	
@@ -615,47 +613,64 @@ public class Gerir_ocorrencia {
 	 */
 	public int eliminar_membro_criterio(String nomeEquipa, String categoria, String nomeMembro, String porque) {
 
-	    if (nomeEquipa.trim().isEmpty() || categoria.trim().isEmpty() || 
+	    if (nomeEquipa.trim().isEmpty() || categoria.trim().isEmpty() ||
 	        nomeMembro.trim().isEmpty() || porque.trim().isEmpty()) {
 	        System.out.println("Todos os campos tem de ser preenchidos obrigatoriamente!");
 	        return 0;
 	    }
 
 	    if (this.existe_categoria(categoria) == 0) {
-	        System.out.println("A categoria '" + categoria + "' não existe.");
-	        return 0; 
-	    }
-
-	    int equipaExiste = 0;
-	    for (Utilizador u : lista_utilizadores) {
-	        if (u.getTipo_utilizador().equals("Equipa")) {
-	            if (u.getNome().equals(nomeEquipa)) {
-	                equipaExiste = 1;
-	                break; 
-	            }
-	        }
-	    }
-
-	    if (equipaExiste == 0) {
-	        System.out.println("A equipa '" + nomeEquipa + "' não existe.");
+	        System.out.println("A categoria '" + categoria + "' nao existe.");
 	        return 0;
 	    }
-	  
-	    for (int i = 0; i < lista_utilizadores.size(); i++) {
-	        Utilizador u = lista_utilizadores.get(i);
-	        
-	        if (u.getNome().equals(nomeMembro)) {
-	            if (u.getTipo_utilizador().equals("Utilizador")) {
-	                lista_utilizadores.remove(i);
-	                return 1; 
-	            }
+
+	    // CORRECAO: procura a equipa na lista_equipas (nao em lista_utilizadores)
+	    Equipa equipaAlvo = null;
+	    for (Equipa e : lista_equipas) {
+	        if (e.getNome().equals(nomeEquipa) && e.getCategoria().equals(categoria)) {
+	            equipaAlvo = e;
+	            break;
 	        }
 	    }
-	    System.out.println("O membro '" + nomeMembro + "' não foi encontrado.");
+
+	    if (equipaAlvo == null) {
+	        System.out.println("A equipa '" + nomeEquipa + "' nao existe na categoria '" + categoria + "'.");
+	        return 0;
+	    }
+
+	    // CORRECAO: remove o membro da lista membros da equipa (nao da lista_utilizadores global)
+	    ArrayList<Utilizador> membros = equipaAlvo.getMembros();
+	    for (int i = 0; i < membros.size(); i++) {
+	        if (membros.get(i).getNome().equals(nomeMembro)) {
+	            membros.remove(i);
+	            // CORRECAO: decrementa a lotacao ocupada da equipa
+	            equipaAlvo.setLotacao_ocupada(equipaAlvo.getLotacao_ocupada() - 1);
+	            return 1;
+	        }
+	    }
+	    System.out.println("O membro '" + nomeMembro + "' nao foi encontrado na equipa '" + nomeEquipa + "'.");
 	    return 0;
 	}
 	
 	
+	/**
+	 * @param titulo
+	 * @return 1 se a ocorrencia existe e tem equipa atribuida, senao 0
+	 * CORRECAO: usado para validar denuncias de trabalho
+	 */
+	public int existe_titulo_com_equipa(String titulo) {
+	    for (Ocorrencia o : lista_correncias) {
+	        if (o.getTitulo().equals(titulo)) {
+	            if (!o.getNomeEquipaAtribuida().equals("Nenhuma")) {
+	                return 1;
+	            }
+	            return 0; // existe mas sem equipa
+	        }
+	    }
+	    return 0;
+	}
+
+
 	/**
 	 * @param d
 	 * registar denuncia 
@@ -706,17 +721,20 @@ public class Gerir_ocorrencia {
 	
 	/**
 	 * @param novaOcorrencia
-	 * atribui trabalho
+	 * atribuir trabalhos
 	 */
 	public void atribuir_trabalho(Ocorrencia novaOcorrencia) {
 	    Equipa equipaComMenosTrabalho = null;
 	    int menorNumeroDeTrabalhos = 999999;
 
 	    for (Equipa e : lista_equipas) {
-	        if (e.getCategoria().equals(novaOcorrencia.getCategoria() )  ) {
+	        if (e.getCategoria().equals(novaOcorrencia.getCategoria())) {
 	            int contagemTrabalhos = 0;
 	            for (Ocorrencia o : lista_correncias) {
-	                if (o.getNomeEquipaAtribuida().equals(e.getNome()) && !o.getEstado().equals("Concluido")) {
+	                // Excluir a própria ocorrência e as já concluídas
+	                if (o != novaOcorrencia &&
+	                    o.getNomeEquipaAtribuida().equals(e.getNome()) &&
+	                    !o.getEstado().equals("Concluido")) {
 	                    contagemTrabalhos++;
 	                }
 	            }
@@ -737,9 +755,13 @@ public class Gerir_ocorrencia {
 
 	/**
 	 * @param nomeEquipa
-	 * liista ocorrencias equipa
+	 * lista ocorrencias
 	 */
 	public void lista_ocorrencia_equipa(String nomeEquipa) {
+	    if (nomeEquipa == null) {
+	        System.out.println("Equipa não definida. Por favor volte a fazer login e selecione a sua equipa.");
+	        return;
+	    }
 	    int encontrou = 0;
 	    for (Ocorrencia o : lista_correncias) {
 	        if (o.getNomeEquipaAtribuida().equals(nomeEquipa)) {
