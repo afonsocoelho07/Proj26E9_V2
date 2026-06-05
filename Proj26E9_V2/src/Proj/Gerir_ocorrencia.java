@@ -239,22 +239,18 @@ public class Gerir_ocorrencia {
 					if (o.getNomeEquipaAtribuida().equals(nomeEquipa)) {
 						System.out.println(o.detalhes());
 					} else {
-						System.out.println("**************************************************************************************");
 						System.out.println("*                                                                                    *");
 						System.out.println("*         Sem permissao para ver esta ocorrencia / No permission to view this        *");
 						System.out.println("*                                                                                    *");
-						System.out.println("**************************************************************************************");
 					}
 					return;
 				} else {
 					if (o.getNome_autor().equals(nome_login)) {
 						System.out.println(o.detalhes());
 					} else {
-						System.out.println("**************************************************************************************");
 						System.out.println("*                                                                                    *");
 						System.out.println("*         Sem permissao para ver esta ocorrencia / No permission to view this        *");
 						System.out.println("*                                                                                    *");
-						System.out.println("**************************************************************************************");
 					}
 					return;
 				}
@@ -347,12 +343,10 @@ public class Gerir_ocorrencia {
 			}
 		}
 		if(existe==0) {
-			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-       	System.out.println("*                  Não existe titulo / There is no title                             *");
-       	System.out.println("*                                                                                    *");
-       	System.out.println("**************************************************************************************");
-		
+	       	System.out.println("*                  Não existe titulo / There is no title                             *");
+	       	System.out.println("*                                                                                    *");
+			
 		}
 	}
 	
@@ -371,11 +365,9 @@ public class Gerir_ocorrencia {
 				
 			}
 			if(existe==0) {
-				System.out.println("**************************************************************************************");
 				System.out.println("*                                                                                    *");
 	        	System.out.println("*                  Não existe titulo / There is no title                             *");
 	        	System.out.println("*                                                                                    *");
-	        	System.out.println("**************************************************************************************");
 			
 			}
 		
@@ -399,11 +391,9 @@ public class Gerir_ocorrencia {
 			}
 		}
 		if(existe==0) {
-			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-       	System.out.println("*            Não existe categoria / There is no category                             *");
-       	System.out.println("*                                                                                    *");
-       	System.out.println("**************************************************************************************");
+	       	System.out.println("*            Não existe categoria / There is no category                             *");
+	       	System.out.println("*                                                                                    *");
 		
 		}
 	}
@@ -421,12 +411,10 @@ public class Gerir_ocorrencia {
 			}
 		}
 		if(existe==0) {
-			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-       	System.out.println("*            Não existe categoria / There is no category                             *");
-       	System.out.println("*                                                                                    *");
-       	System.out.println("**************************************************************************************");
-		
+	       	System.out.println("*            Não existe categoria / There is no category                             *");
+	       	System.out.println("*                                                                                    *");
+			
 		}
 	}
 	
@@ -456,11 +444,9 @@ public class Gerir_ocorrencia {
 				}
 			}
 		}else {
-			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
-       	System.out.println("*                                Mes iválido / Invalid month                         *");
-       	System.out.println("*                                                                                    *");
-       	System.out.println("**************************************************************************************");
+	       	System.out.println("*                                Mes iválido / Invalid month                         *");
+	       	System.out.println("*                                                                                    *");
 		}
 	}
 	
@@ -476,11 +462,9 @@ public class Gerir_ocorrencia {
 				}
 			}
 		}else {
-			System.out.println("**************************************************************************************");
 			System.out.println("*                                                                                    *");
 	       	System.out.println("*                                Ano iválido / Invalid year                          *");
 	       	System.out.println("*                                                                                    *");
-	       	System.out.println("**************************************************************************************");
 		}
 	}
 	
@@ -797,11 +781,9 @@ public class Gerir_ocorrencia {
 	            }
 	        }
 	    } else {
-	        System.out.println("**************************************************************************************");
 	        System.out.println("*                                                                                    *");
 	        System.out.println("*                     Mes invalido / Invalid month                                   *");
 	        System.out.println("*                                                                                    *");
-	        System.out.println("**************************************************************************************");
 	    }
 	}
 
@@ -819,11 +801,9 @@ public class Gerir_ocorrencia {
 	            }
 	        }
 	    } else {
-	        System.out.println("**************************************************************************************");
 	        System.out.println("*                                                                                    *");
 	        System.out.println("*                         Ano invalido / Invalid year                                *");
 	        System.out.println("*                                                                                    *");
-	        System.out.println("**************************************************************************************");
 	    }
 	}
 	
