@@ -812,15 +812,15 @@ public class Gerir_ocorrencia {
 	 * @param sala
 	 * verifica sala para os edificios menos o sao tome
 	 */
-	public  void verificarSala(int piso, int sala) {
+	public void verificarSala(int piso, int sala) {
 
 	    int min = piso * 100;
 	    int max = min + 21;
 
 	    if (piso >= 1 && piso <= 6 && sala >= min && sala <= max) {
-	        System.out.println("Sala válida no piso " + piso);
+	        System.out.println("*                Sala " + sala + " escolhida / Room " + sala + " selected            *");
 	    } else {
-	        System.out.println("Sala inválida");
+	        System.out.println("*                        Sala inválida / Invalid room                                *");
 	    }
 	}
 		
@@ -839,9 +839,9 @@ public class Gerir_ocorrencia {
 		public void verificarSalaSaoTome(int sala) {
 
 		    if (sala >= 700 && sala <= 721) {
-		        System.out.println("Sala válida no São Tomé");
+		        System.out.println("*                Sala " + sala + " escolhida / Room " + sala + " selected           *");
 		    } else {
-		        System.out.println("Sala inválida no São Tomé");
+		        System.out.println("*                        Sala inválida / Invalid room                               *");
 		    }
 		}
 	
