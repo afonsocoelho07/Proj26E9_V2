@@ -529,7 +529,6 @@ public class Gerir_ocorrencia {
 	 * @param titulo
 	 * elimina ocorrencia do utilizador
 	 */
-	
 	public int eliminar_ocorrencia(String nome_utilizador, String titulo) {
 	    for (Ocorrencia o:lista_correncias) {
 	        if (o.getNome_autor().equals(nome_utilizador) && o.getTitulo().equals(titulo)) {
@@ -608,7 +607,6 @@ public class Gerir_ocorrencia {
 	        return 0;
 	    }
 
-	    // CORRECAO: procura a equipa na lista_equipas (nao em lista_utilizadores)
 	    Equipa equipaAlvo = null;
 	    for (Equipa e : lista_equipas) {
 	        if (e.getNome().equals(nomeEquipa) && e.getCategoria().equals(categoria)) {
@@ -622,12 +620,10 @@ public class Gerir_ocorrencia {
 	        return 0;
 	    }
 
-	    // CORRECAO: remove o membro da lista membros da equipa (nao da lista_utilizadores global)
 	    ArrayList<Utilizador> membros = equipaAlvo.getMembros();
 	    for (int i = 0; i < membros.size(); i++) {
 	        if (membros.get(i).getNome().equals(nomeMembro)) {
 	            membros.remove(i);
-	            // CORRECAO: decrementa a lotacao ocupada da equipa
 	            equipaAlvo.setLotacao_ocupada(equipaAlvo.getLotacao_ocupada() - 1);
 	            return 1;
 	        }
@@ -715,7 +711,6 @@ public class Gerir_ocorrencia {
 	        if (e.getCategoria().equals(novaOcorrencia.getCategoria())) {
 	            int contagemTrabalhos = 0;
 	            for (Ocorrencia o : lista_correncias) {
-	                // Excluir a própria ocorrência e as já concluídas
 	                if (o != novaOcorrencia &&
 	                    o.getNomeEquipaAtribuida().equals(e.getNome()) &&
 	                    !o.getEstado().equals("Concluido")) {
